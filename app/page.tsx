@@ -279,12 +279,12 @@ export default function HomePage() {
               <div className="space-y-4">
                 <h1 className="text-6xl md:text-8xl font-black leading-tight">
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-green-600 to-blue-600">
-                    Sip
-                  </span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600">
                     Sustainably
                   </span>
-                  <span className="block text-gray-900 text-4xl md:text-5xl font-light mt-2">Live Luxuriously</span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600">
+                    in every
+                  </span>
+                  <span className="block text-gray-900 text-4xl md:text-5xl font-light mt-2">Sip</span>
                 </h1>
               </div>
 
