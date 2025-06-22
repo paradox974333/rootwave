@@ -91,7 +91,7 @@ export default function HomePage() {
     images: [
       "/DSC03027.JPG?height=200&width=300",
       "/DSC03080.JPG?height=200&width=300", 
-      "/DSC03029.JPG?height=200&width=300"
+      "/1.png?height=250&width=350"
     ]
   },
   {
@@ -103,9 +103,9 @@ export default function HomePage() {
     bestFor: "Gourmet smoothies, luxury milkshakes, specialty drinks",
     image: "/placeholder.svg?height=200&width=300",
     images: [
-      "/straw-8mm-1.jpg?height=200&width=300",
-      "/straw-8mm-2.jpg?height=200&width=300",
-      "/straw-8mm-3.jpg?height=200&width=300"
+      "/DSC02990.JPG?height=200&width=300",
+      "/DSC02991.JPG?height=200&width=300",
+      "/2.png?height=300&width=500"
     ]
   },
   {
@@ -117,9 +117,9 @@ export default function HomePage() {
     bestFor: "Thick shakes, artisanal smoothies, craft beverages",
     image: "/placeholder.svg?height=200&width=300",
     images: [
-      "/straw-10mm-1.jpg?height=200&width=300",
-      "/straw-10mm-2.jpg?height=200&width=300", 
-      "/straw-10mm-3.jpg?height=200&width=300"
+      "/DSC03089.JPG?height=200&width=300",
+      "/DSC03093.JPG?height=200&width=300", 
+      "/3.png?height=200&width=300"
     ]
   },
   {
@@ -131,9 +131,9 @@ export default function HomePage() {
     bestFor: "Luxury bubble tea, gourmet slushies, signature drinks",
     image: "/placeholder.svg?height=200&width=300",
     images: [
-      "/straw-13mm-1.jpg?height=200&width=300",
-      "/straw-13mm-2.jpg?height=200&width=300",
-      "/straw-13mm-3.jpg?height=200&width=300"
+      "/DSC03046.JPG?height=200&width=300",
+      "/DSC03002.JPG?height=200&width=300",
+      "/4.png?height=200&width=300"
     ]
   },
 ]
@@ -282,9 +282,9 @@ export default function HomePage() {
                     Sustainably
                   </span>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600">
-                    in every
+                    in every sip
                   </span>
-                  <span className="block text-gray-900 text-4xl md:text-5xl font-light mt-2">Sip</span>
+                  <span className="block text-gray-900 text-4xl md:text-5xl font-light mt-2"></span>
                 </h1>
               </div>
 
@@ -530,12 +530,12 @@ export default function HomePage() {
             </h2>
 
             <p className="text-xl text-gray-600 mb-8 font-medium">
-              Engineered for discerning establishments – Minimum order: 10,000 straws
+              Engineered for discerning establishments – Minimum order: 1000 straws
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Badge className="px-6 py-3 text-sm bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border border-blue-300 rounded-full font-bold">
-                Minimum Order: 10,000 straws
+                Minimum Order: 1000 straws
               </Badge>
               <Badge className="px-6 py-3 text-sm bg-gradient-to-r from-emerald-100 to-emerald-200 text-emerald-800 border border-emerald-300 rounded-full font-bold">
                 Bulk Pricing
@@ -664,120 +664,122 @@ export default function HomePage() {
 
           {/* Custom Branding */}
           <div>
-            <h3 className="text-4xl font-black mb-12 text-center text-gray-900">👑Custom Branding</h3>
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6 sm:mb-8 lg:mb-12 text-center text-gray-900">
+            👑Custom Branding
+          </h3>
 
-            <Card className="relative border-2 border-emerald-200 hover:border-emerald-300 shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-3xl overflow-hidden bg-gradient-to-br from-white to-emerald-50">
-              <CardContent className="p-16">
-                <div className="grid md:grid-cols-2 gap-16 items-center">
-                  <div className="relative">
-                    <div className="relative z-10 group">
-                      <Image
-                        src="/placeholder.svg?height=400&width=500"
-                        alt="Luxury custom branded pouches"
-                        width={500}
-                        height={400}
-                        className="rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent rounded-3xl"></div>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-200/20 to-pink-200/20 rounded-3xl blur-3xl scale-110 -z-10"></div>
+          <Card className="relative border-2 border-emerald-200 hover:border-emerald-300 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-white to-emerald-50">
+            <CardContent className="p-4 sm:p-8 lg:p-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
+                <div className="relative order-2 lg:order-1">
+                  <div className="relative z-10 group">
+                    <img
+                      src="IMG_4752.jpg"
+                      alt="Luxury custom branded pouches"
+                      className="w-full h-48 sm:h-64 lg:h-80 object-cover rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent rounded-2xl sm:rounded-3xl"></div>
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-200/20 to-pink-200/20 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl scale-110 -z-10"></div>
+                </div>
 
-                  <div className="space-y-8">
-                    <p className="text-xl text-gray-700 leading-relaxed font-medium">
-                      Elevate your brand presence with our luxury custom-printed pouches. Designed for establishments
-                      that demand excellence in every detail.
-                    </p>
+                <div className="space-y-4 sm:space-y-6 lg:space-y-8 order-1 lg:order-2">
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-medium">
+                    Elevate your brand presence with our luxury custom-printed pouches. Designed for establishments
+                    that demand excellence in every detail.
+                  </p>
 
-                    <div className="space-y-8">
-                      <div>
-                        <h4 className="font-black mb-6 text-2xl text-gray-900 flex items-center">
-                          <Crown className="w-6 h-6 text-amber-600 mr-3" />
-                          Features
-                        </h4>
-                        <ul className="space-y-4">
-                          {[
-                            "Embossed branding with your logo",
-                            "Luxury matte finish with spot UV accents",
-                            "Perfect for high-end establishments",
-                            "Exceptional brand visibility and recognition",
-                          ].map((feature, index) => (
-                            <li key={index} className="flex items-center space-x-4">
-                              <div className="w-2 h-2 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-full"></div>
-                              <span className="text-gray-700 font-medium">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="font-black mb-6 text-2xl text-gray-900 flex items-center">
-                          <Gem className="w-6 h-6 text-purple-600 mr-3" />
-                          Investment Details
-                        </h4>
-                        <div className="space-y-4">
-                          <div className="flex items-center space-x-4">
-                            <div className="w-2 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
-                            <span className="text-gray-700 font-medium">
-                              Setup fee: <span className="font-black text-emerald-600">₹10,000</span> (one-time
-                              investment)
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-4">
-                            <div className="w-2 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
-                            <span className="text-gray-700 font-medium">
-                              Minimum order: <span className="font-black text-emerald-600">30,000 straws</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <Button
-                        className="group w-full px-10 py-6 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-lg font-bold shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-2xl"
-                        onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                      >
-                        <div className="flex items-center justify-center space-x-3">
-                          <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-                          <span>Inquire About Custom Branding</span>
-                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
-                      </Button>
+                  <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+                    <div>
+                      <h4 className="font-black mb-3 sm:mb-4 lg:mb-6 text-lg sm:text-xl lg:text-2xl text-gray-900 flex items-center">
+                        <Crown className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600 mr-2 sm:mr-3" />
+                        Features
+                      </h4>
+                      <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
+                        {[
+                          "Embossed branding with your logo",
+                          "Luxury matte finish with spot UV accents",
+                          "Perfect for high-end establishments",
+                          "Exceptional brand visibility and recognition",
+                        ].map((feature, index) => (
+                          <li key={index} className="flex items-start space-x-3 sm:space-x-4">
+                            <div className="w-2 h-2 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-sm sm:text-base text-gray-700 font-medium leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+
+                    <div>
+                      <h4 className="font-black mb-3 sm:mb-4 lg:mb-6 text-lg sm:text-xl lg:text-2xl text-gray-900 flex items-center">
+                        <Gem className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 mr-2 sm:mr-3" />
+                        Investment Details
+                      </h4>
+                      <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                        <div className="flex items-start space-x-3 sm:space-x-4">
+                          <div className="w-2 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm sm:text-base text-gray-700 font-medium leading-relaxed">
+                            Setup fee: <span className="font-black text-emerald-600">₹10,000</span> (one-time
+                            investment)
+                          </span>
+                        </div>
+                        <div className="flex items-start space-x-3 sm:space-x-4">
+                          <div className="w-2 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm sm:text-base text-gray-700 font-medium leading-relaxed">
+                            Minimum order: <span className="font-black text-emerald-600">1000 straws</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button
+                      className="group w-full px-4 sm:px-6 lg:px-10 py-3 sm:py-4 lg:py-6 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-sm sm:text-base lg:text-lg font-bold shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-xl sm:rounded-2xl"
+                      onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                    >
+                      <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                        <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 group-hover:rotate-12 transition-transform duration-300" />
+                        <span className="text-center leading-tight">Inquire About Custom Branding</span>
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
+                    </Button>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Comparison Section */}
-      <section id="comparison" className="py-24 px-4 bg-gradient-to-br from-gray-50 to-emerald-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-50 to-emerald-50 rounded-full border border-red-200/50 mb-8">
-              <Recycle className="w-5 h-5 text-red-600 mr-3" />
-              <span className="text-sm font-bold text-red-800 tracking-wider">ENVIRONMENTAL IMPACT</span>
-            </div>
-
-            <h2 className="text-6xl md:text-7xl font-black mb-8 leading-tight">
-              <span className="block text-gray-900">Why Choose</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-600">
-                Rice Straws
-              </span>
-              <span className="block text-gray-700 text-3xl md:text-4xl font-light mt-4">Over Plastic?</span>
-            </h2>
+  <section id="comparison" className="py-8 sm:py-16 lg:py-24 px-4 bg-gradient-to-br from-gray-50 to-emerald-50">
+      <div className="container mx-auto">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+          <div className="inline-flex items-center px-3 sm:px-4 lg:px-6 py-2 sm:py-3 bg-gradient-to-r from-red-50 to-emerald-50 rounded-full border border-red-200/50 mb-4 sm:mb-6 lg:mb-8">
+            <Recycle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 mr-2 sm:mr-3" />
+            <span className="text-xs sm:text-sm font-bold text-red-800 tracking-wider">ENVIRONMENTAL IMPACT</span>
           </div>
 
-          {/* Comparison Table */}
-          <div className="mb-20">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-              <table className="w-full">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 sm:mb-6 lg:mb-8 leading-tight">
+            <span className="block text-gray-900">Why Choose</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-600">
+              Rice Straws
+            </span>
+            <span className="block text-gray-700 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light mt-2 sm:mt-4">Over Alternatives?</span>
+          </h2>
+        </div>
+
+        {/* Comparison Table */}
+        <div className="mb-8 sm:mb-12 lg:mb-20">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden border border-gray-200">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-gradient-to-r from-emerald-600 via-green-600 to-blue-600 text-white">
                   <tr>
-                    <th className="p-8 text-left font-black text-xl">Comparison Factor</th>
-                    <th className="p-8 text-left font-black text-xl">Traditional Plastic</th>
-                    <th className="p-8 text-left font-black text-xl">Rice Straws</th>
+                    <th className="p-3 sm:p-4 lg:p-6 text-left font-black text-sm sm:text-base lg:text-lg">Comparison Factor</th>
+                    <th className="p-3 sm:p-4 lg:p-6 text-left font-black text-sm sm:text-base lg:text-lg">Plastic</th>
+                    <th className="p-3 sm:p-4 lg:p-6 text-left font-black text-sm sm:text-base lg:text-lg">Paper</th>
+                    <th className="p-3 sm:p-4 lg:p-6 text-left font-black text-sm sm:text-base lg:text-lg">Rice Straws</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -785,29 +787,46 @@ export default function HomePage() {
                     {
                       factor: "Environmental Cost",
                       plastic: "Devastating long-term impact",
+                      paper: "Deforestation & chemical processing",
                       rice: "Carbon-negative production",
                       plasticColor: "text-red-600",
+                      paperColor: "text-orange-600",
                       riceColor: "text-emerald-600",
                     },
                     {
                       factor: "Decomposition Time",
                       plastic: "500+ years in landfills",
+                      paper: "2-6 weeks (limited conditions)",
                       rice: "90 days complete biodegradation",
                       plasticColor: "text-red-600",
+                      paperColor: "text-orange-600",
+                      riceColor: "text-emerald-600",
+                    },
+                    {
+                      factor: "Durability",
+                      plastic: "Strong but harmful",
+                      paper: "Soggy within minutes",
+                      rice: "Stays firm for hours",
+                      plasticColor: "text-red-600",
+                      paperColor: "text-orange-600",
                       riceColor: "text-emerald-600",
                     },
                     {
                       factor: "Health & Safety",
-                      plastic: "Potential microplastic contamination",
+                      plastic: "Microplastic contamination",
+                      paper: "Chemical bleaching residues",
                       rice: "Food-grade, edible materials",
                       plasticColor: "text-red-600",
+                      paperColor: "text-orange-600",
                       riceColor: "text-emerald-600",
                     },
                     {
-                      factor: "Brand Message",
-                      plastic: "Convenience over consequence",
-                      rice: "Sustainability leadership",
+                      factor: "User Experience",
+                      plastic: "Functional but unsustainable",
+                      paper: "Deteriorates quickly",
+                      rice: "Premium feel & performance",
                       plasticColor: "text-red-600",
+                      paperColor: "text-orange-600",
                       riceColor: "text-emerald-600",
                     },
                   ].map((row, index) => (
@@ -815,41 +834,45 @@ export default function HomePage() {
                       key={index}
                       className={`border-b hover:bg-gray-50 transition-colors ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
                     >
-                      <td className="p-8 font-bold text-gray-900 text-lg">{row.factor}</td>
-                      <td className={`p-8 font-semibold ${row.plasticColor} text-lg`}>{row.plastic}</td>
-                      <td className={`p-8 font-semibold ${row.riceColor} text-lg`}>{row.rice}</td>
+                      <td className="p-3 sm:p-4 lg:p-6 font-bold text-gray-900 text-xs sm:text-sm lg:text-base">{row.factor}</td>
+                      <td className={`p-3 sm:p-4 lg:p-6 font-semibold ${row.plasticColor} text-xs sm:text-sm lg:text-base`}>{row.plastic}</td>
+                      <td className={`p-3 sm:p-4 lg:p-6 font-semibold ${row.paperColor} text-xs sm:text-sm lg:text-base`}>{row.paper}</td>
+                      <td className={`p-3 sm:p-4 lg:p-6 font-semibold ${row.riceColor} text-xs sm:text-sm lg:text-base`}>{row.rice}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
+        </div>
 
-          {/* Impact Statements */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative p-10 bg-gradient-to-br from-red-50 to-red-100 rounded-3xl border-l-8 border-red-500 shadow-xl">
-              <div className="absolute top-6 right-6">
-                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">!</span>
-                </div>
+        {/* Impact Statements */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          <div className="relative p-4 sm:p-6 lg:p-10 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl sm:rounded-3xl border-l-4 sm:border-l-6 lg:border-l-8 border-red-500 shadow-lg sm:shadow-xl">
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-6 lg:right-6">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-red-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">!</span>
               </div>
-              <blockquote className="text-2xl text-red-800 italic font-bold leading-relaxed">
-                "Every plastic straw used today becomes tomorrow's environmental burden – lasting centuries beyond its
-                minutes of use."
-              </blockquote>
             </div>
+            <blockquote className="text-sm sm:text-lg lg:text-2xl text-red-800 italic font-bold leading-relaxed">
+              "Every plastic straw used today becomes tomorrow's environmental burden – lasting centuries beyond its
+              minutes of use."
+            </blockquote>
+          </div>
 
-            <div className="relative p-10 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-3xl border-l-8 border-emerald-500 shadow-xl">
-              <div className="absolute top-6 right-6">
-                <Crown className="w-10 h-10 text-emerald-600" />
+          <div className="relative p-4 sm:p-6 lg:p-10 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl sm:rounded-3xl border-l-4 sm:border-l-6 lg:border-l-8 border-orange-500 shadow-lg sm:shadow-xl">
+            <div className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-6 lg:right-6">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">?</span>
               </div>
-              <blockquote className="text-2xl text-emerald-800 font-black leading-relaxed">
-                "With rice straws, you're not just serving drinks – you're serving a vision of sustainable luxury."
-              </blockquote>
             </div>
+            <blockquote className="text-sm sm:text-lg lg:text-2xl text-orange-800 italic font-bold leading-relaxed">
+              "Paper straws: the compromise solution that compromises your drink experience while still requiring tree resources."
+            </blockquote>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Checkout Section */}
       <section id="checkout" className="py-24 px-4 bg-gradient-to-br from-white to-gray-50">

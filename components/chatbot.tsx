@@ -68,7 +68,7 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
   const [isMinimized, setIsMinimized] = useState(false)
   const [quickOrder, setQuickOrder] = useState<QuickOrder>({
     product: "",
-    quantity: 10000,
+    quantity: 1000,
     color: "white",
     customerInfo: { name: "", business: "", phone: "", email: "" },
   })
@@ -246,9 +246,8 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
 
     setTimeout(() => {
       const response = getResponse(inputValue)
-      addMessage(response.text, true, response.quickReplies, response.actions, response.type, response.component)
+      addMessage(response.text, true, response.quickReplies, response.actions, response.type, response.component as "quick-order" | "product-selector" | "order-summary" | undefined)
     }, 1000)
-
     setInputValue("")
   }
 
@@ -258,9 +257,8 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
 
     setTimeout(() => {
       const response = getResponse(reply)
-      addMessage(response.text, true, response.quickReplies, response.actions, response.type, response.component)
-    }, 1000)
-  }
+      addMessage(response.text, true, response.quickReplies, response.actions, response.type, response.component as "quick-order" | "product-selector" | "order-summary" | undefined)
+    }, 1000)  }
 
   const handleAction = (action: string, data?: any) => {
     switch (action) {
@@ -395,8 +393,8 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
     const calculateTotal = () => {
       if (!selectedProduct) return 0
       let discount = 0
-      if (quickOrder.quantity >= 250000) discount = 0.2
-      else if (quickOrder.quantity >= 100000) discount = 0.15
+      if (quickOrder.quantity >= 25000) discount = 0.2
+      else if (quickOrder.quantity >= 10000) discount = 0.15
       else if (quickOrder.quantity >= 50000) discount = 0.1
 
       const discountedPrice = selectedProduct.price * (1 - discount)
@@ -469,11 +467,11 @@ Please confirm this order and provide payment details.`
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="10000">10,000 straws</SelectItem>
-                <SelectItem value="25000">25,000 straws</SelectItem>
-                <SelectItem value="50000">50,000 straws (10% OFF)</SelectItem>
-                <SelectItem value="100000">100,000 straws (15% OFF)</SelectItem>
-                <SelectItem value="250000">250,000 straws (20% OFF)</SelectItem>
+                <SelectItem value="1000">1000 straws</SelectItem>
+                <SelectItem value="2500">2500 straws</SelectItem>
+                <SelectItem value="5000">5000 straws (10% OFF)</SelectItem>
+                <SelectItem value="10000">10000 straws (15% OFF)</SelectItem>
+                <SelectItem value="25000">25000 straws (20% OFF)</SelectItem>
               </SelectContent>
             </Select>
           </div>

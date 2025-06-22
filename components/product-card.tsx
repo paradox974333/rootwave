@@ -30,17 +30,17 @@ const colors = [
 ]
 
 const bulkQuantities = [
-  { value: 10000, label: "10,000 straws", badge: "Starter" },
-  { value: 25000, label: "25,000 straws", badge: "Popular" },
-  { value: 50000, label: "50,000 straws", badge: "Business" },
-  { value: 100000, label: "100,000 straws", badge: "Enterprise" },
-  { value: 250000, label: "250,000 straws", badge: "Premium" },
-  { value: 500000, label: "500,000 straws", badge: "Wholesale" },
+  { value: 1000, label: "1000 straws", badge: "Starter" },
+  { value: 2500, label: "2500 straws", badge: "Popular" },
+  { value: 5000, label: "5000 straws", badge: "Business" },
+  { value: 10000, label: "10000 straws", badge: "Enterprise" },
+  { value: 25000, label: "25000 straws", badge: "Premium" },
+  { value: 50000, label: "50000 straws", badge: "Wholesale" },
 ]
 
 export function ProductCard({ id, name, diameter, price, description, bestFor, image, images }: ProductCardProps) {
   const [selectedColor, setSelectedColor] = useState("white")
-  const [quantity, setQuantity] = useState(10000)
+  const [quantity, setQuantity] = useState(1000)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const cardImages = images && images.length > 0 ? images : [image, image, image]
   const currentImage = cardImages[currentImageIndex]
@@ -77,9 +77,9 @@ export function ProductCard({ id, name, diameter, price, description, bestFor, i
   }
 
   const getDiscountPercentage = (qty: number) => {
-    if (qty >= 250000) return 20
-    if (qty >= 100000) return 15
-    if (qty >= 50000) return 10
+    if (qty >= 25000) return 20
+    if (qty >= 50000) return 15
+    if (qty >= 100000) return 10
     return 0
   }
 
@@ -199,7 +199,7 @@ export function ProductCard({ id, name, diameter, price, description, bestFor, i
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-2 block text-gray-700">📊 Bulk Quantity (Minimum 10,000)</label>
+            <label className="text-sm font-medium mb-2 block text-gray-700">📊 Bulk Quantity (Minimum 1000)</label>
             <Select value={quantity.toString()} onValueChange={(value) => setQuantity(Number.parseInt(value))}>
               <SelectTrigger className="border-gray-300 focus:border-green-500">
                 <SelectValue />
