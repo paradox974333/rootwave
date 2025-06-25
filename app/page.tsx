@@ -1026,111 +1026,143 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="relative bg-gradient-to-br from-gray-900 via-emerald-900 to-blue-900 text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background Elements (visual, should not affect layout much) */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
-        </div>
+  {/* Background Elements (visual, should not affect layout much) */}
+  <div className="absolute inset-0">
+    <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+  </div>
 
-        <div className="container mx-auto relative z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16 mb-10 sm:mb-12 md:mb-16">
-            <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center space-x-3 sm:space-x-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
-                   <Image src="/logo icon -svg-01.png" alt="Rootwave Logo" width={36} height={36} className="w-9 h-9 sm:w-10 sm:h-10" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black">Rootwave</h3>
-              </div>
-              <p className="text-emerald-200 text-lg md:text-xl font-bold">Sip Sustainably, Live Luxuriously</p>
-              <p className="text-emerald-300 text-sm sm:text-base leading-relaxed font-medium">
-                Pioneering the future of sustainability through innovative agricultural transformation.
-              </p>
-            </div>
-
-            <div className="space-y-4 md:space-y-6">
-              <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Quick Access</h4>
-              <ul className="space-y-3 sm:space-y-4 text-emerald-200">
-                {["Home", "About", "Products", "Contact"].map((item, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => {
-                        try {
-                          document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: "smooth" })
-                        } catch (error) {
-                          console.error("Navigation error:", error)
-                        }
-                      }}
-                      className="hover:text-white cursor-pointer transition-colors font-semibold text-sm sm:text-base md:text-lg group"
-                    >
-                      <span className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-300 inline-block">
-                        {item}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-4 md:space-y-6">
-              <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Signature Collection</h4>
-              <ul className="space-y-3 sm:space-y-4 text-emerald-200">
-                {["6.5mm Rice Straws", "8mm Rice Straws", "10mm Rice Straws", "13mm Rice Straws"].map((item, index) => (
-                  <li key={index} className="font-semibold text-sm sm:text-base md:text-lg">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-4 md:space-y-6">
-              <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Expert Support</h4>
-              <ul className="space-y-4 sm:space-y-6 text-emerald-200">
-                <li className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-4 h-4 sm:w-5 sm:h-6" />
-                  </div>
-                  <a
-                    href="mailto:info@rootwave.org"
-                    className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg break-all"
-                  >
-                    info@rootwave.org
-                  </a>
-                </li>
-                <li className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-6" />
-                  </div>
-                  <a href="tel:+917760021026" className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg">
-                    +91 77600 21026
-                  </a>
-                </li>
-                <li className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="w-4 h-4 sm:w-5 sm:h-6" />
-                  </div>
-                  <a
-                    href="https://wa.me/917760021026?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20your%20eco-luxury%20rice%20straws."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg"
-                  >
-                    WhatsApp
-                  </a>
-                </li>
-                <li className="font-bold text-sm sm:text-base md:text-lg">🇮🇳 Proudly Made in India</li>
-              </ul>
-            </div>
+  <div className="container mx-auto relative z-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16 mb-10 sm:mb-12 md:mb-16">
+      <div className="space-y-4 md:space-y-6">
+        <div className="flex items-center space-x-3 sm:space-x-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+            {/* Assuming 'Image' component is available in the scope where this JSX is rendered */}
+            <Image src="/logo icon -svg-01.png" alt="Rootwave Logo" width={36} height={36} className="w-9 h-9 sm:w-10 sm:h-10" />
           </div>
-
-          <Separator className="bg-gradient-to-r from-emerald-600 to-blue-600 h-0.5 sm:h-1 mb-6 sm:mb-8 md:mb-10" />
-
-          <div className="text-center">
-            <p className="text-emerald-300 text-xs sm:text-sm md:text-base font-bold">
-              © {new Date().getFullYear()} Rootwave. All rights reserved. | Sustainable luxury for tomorrow's world.
-            </p>
-          </div>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black">Rootwave</h3>
         </div>
-      </footer>
+        <p className="text-emerald-200 text-lg md:text-xl font-bold">Sip Sustainably, Live Luxuriously</p>
+        <p className="text-emerald-300 text-sm sm:text-base leading-relaxed font-medium">
+          Pioneering the future of sustainability through innovative agricultural transformation.
+        </p>
+      </div>
+
+      {/* MODIFIED QUICK ACCESS SECTION */}
+      <div className="space-y-4 md:space-y-6">
+        <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Quick Access</h4>
+        <ul className="space-y-3 sm:space-y-4 text-emerald-200">
+          {[
+            { name: "Home", type: "scroll" },
+            { name: "About", type: "scroll" },
+            { name: "Products", type: "scroll" },
+            { name: "Contact", type: "scroll" },
+            { name: "Blogs", href: "/blogs", type: "page" },
+          ].map((item) => (
+            <li key={item.name}> {/* Using item.name for key, assuming names are unique */}
+              {item.type === "page" ? (
+                // Link for page navigation
+                <a
+                  href={item.href}
+                  className="hover:text-white cursor-pointer transition-colors font-semibold text-sm sm:text-base md:text-lg group"
+                  // If using Next.js Link component (and it's in scope):
+                  // import Link from 'next/link';
+                  // <Link href={item.href} passHref>
+                  //   <a className="...">...</a>
+                  // </Link>
+                >
+                  <span className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-300 inline-block">
+                    {item.name}
+                  </span>
+                </a>
+              ) : (
+                // Button for scrolling on the same page
+                <button
+                  onClick={() => {
+                    try {
+                      document.getElementById(item.name.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+                    } catch (error) {
+                      console.error("Navigation error:", error);
+                    }
+                  }}
+                  className="hover:text-white cursor-pointer transition-colors font-semibold text-sm sm:text-base md:text-lg group"
+                >
+                  <span className="group-hover:translate-x-1 sm:group-hover:translate-x-2 transition-transform duration-300 inline-block">
+                    {item.name}
+                  </span>
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* END OF MODIFIED QUICK ACCESS SECTION */}
+
+
+      <div className="space-y-4 md:space-y-6">
+        <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Signature Collection</h4>
+        <ul className="space-y-3 sm:space-y-4 text-emerald-200">
+          {["6.5mm Rice Straws", "8mm Rice Straws", "10mm Rice Straws", "13mm Rice Straws"].map((item, index) => (
+            <li key={index} className="font-semibold text-sm sm:text-base md:text-lg">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="space-y-4 md:space-y-6">
+        <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Expert Support</h4>
+        <ul className="space-y-4 sm:space-y-6 text-emerald-200">
+          <li className="flex items-center space-x-3 sm:space-x-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Assuming 'Mail' component/icon is available in the scope */}
+              <Mail className="w-4 h-4 sm:w-5 sm:h-6" />
+            </div>
+            <a
+              href="mailto:info@rootwave.org"
+              className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg break-all"
+            >
+              info@rootwave.org
+            </a>
+          </li>
+          <li className="flex items-center space-x-3 sm:space-x-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Assuming 'Phone' component/icon is available in the scope */}
+              <Phone className="w-4 h-4 sm:w-5 sm:h-6" />
+            </div>
+            <a href="tel:+917760021026" className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg">
+              +91 77600 21026
+            </a>
+          </li>
+          <li className="flex items-center space-x-3 sm:space-x-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-500/20 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Assuming 'MessageCircle' component/icon is available in the scope */}
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-6" />
+            </div>
+            <a
+              href="https://wa.me/917760021026?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20your%20eco-luxury%20rice%20straws."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors font-semibold text-sm sm:text-base md:text-lg"
+            >
+              WhatsApp
+            </a>
+          </li>
+          <li className="font-bold text-sm sm:text-base md:text-lg">🇮🇳 Proudly Made in India</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Assuming 'Separator' component is available in the scope */}
+    <Separator className="bg-gradient-to-r from-emerald-600 to-blue-600 h-0.5 sm:h-1 mb-6 sm:mb-8 md:mb-10" />
+
+    <div className="text-center">
+      <p className="text-emerald-300 text-xs sm:text-sm md:text-base font-bold">
+        © {new Date().getFullYear()} Rootwave. All rights reserved. | Sustainable luxury for tomorrow's world.
+      </p>
+    </div>
+  </div>
+</footer>
     </div>
   )
 }
