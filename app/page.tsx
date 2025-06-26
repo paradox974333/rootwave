@@ -91,7 +91,7 @@ export default function HomePage() {
     images: [
       "/DSC03027.JPG?height=200&width=300",
       "/DSC03080.JPG?height=200&width=300", 
-      "/1.png?height=250&width=350"
+      "/6.png?height=250&width=350"
     ]
   },
   {
@@ -105,7 +105,7 @@ export default function HomePage() {
     images: [
       "/DSC02990.JPG?height=200&width=300",
       "/DSC02991.JPG?height=200&width=300",
-      "/2.png?height=300&width=500"
+      "/8.png?height=300&width=500"
     ]
   },
   {
@@ -119,7 +119,7 @@ export default function HomePage() {
     images: [
       "/DSC03089.JPG?height=200&width=300",
       "/DSC03093.JPG?height=200&width=300", 
-      "/3.png?height=200&width=300"
+      "/10.png?height=200&width=300"
     ]
   },
   {
@@ -133,7 +133,7 @@ export default function HomePage() {
     images: [
       "/DSC03046.JPG?height=200&width=300",
       "/DSC03002.JPG?height=200&width=300",
-      "/4.png?height=200&width=300"
+      "/13.png?height=200&width=300"
     ]
   },
 ]

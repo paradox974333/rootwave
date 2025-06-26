@@ -65,7 +65,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <div className="flex items-start space-x-4">
                     <div className="relative">
                       <Image
-                        src={item.image || "/placeholder.svg"}
+                        src={item.image || "DSC02990.JPG"}
                         alt={item.name}
                         width={60}
                         height={60}
