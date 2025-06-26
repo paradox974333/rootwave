@@ -21,9 +21,9 @@ export function Header() {
     { name: "Home", href: "/", type: "pageOrScrollToHome" }, 
     { name: "About", href: "/#about", type: "scroll" },
     { name: "Products", href: "/#products", type: "scroll" },
-    { name: "Customization", href: "/#customization", type: "scroll" },
-    { name: "Why Rice Straws?", href: "/#comparison", type: "scroll" },
+    { name: "get free rice straws", href: "/free-samples", type: "page" },
     { name: "Blogs", href: "/blogs", type: "page" }, 
+     { name: "Why Rice Straws?", href: "/#comparison", type: "scroll" },
     { name: "Contact", href: "/#contact", type: "scroll" },
   ];
 
