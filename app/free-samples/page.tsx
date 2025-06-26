@@ -42,10 +42,10 @@ const siteInfo = {
     { id: 'benefit-safe-vegan', icon: Shield, title: "Safe, Vegan & Edible", desc: "Food-grade, gluten-free, cruelty-free, and even edible.", color: "blue" }
   ] as EnvironmentalBenefit[],
   productVariants: [
-    { id: 'prod-6.5mm', size: '6.5mm', use: 'Water, Juice, Tea, Soda', icon: '💧', image: '/2.png', description: 'Perfect for everyday beverages and light drinks' },
-    { id: 'prod-8mm', size: '8mm', use: 'Smoothies, Milkshakes', icon: '🥤', image: '/1.png', description: 'Ideal for medium-thick beverages and protein shakes' },
-    { id: 'prod-10mm', size: '10mm', use: 'Thick Shakes, Fruit Blends', icon: '🍓', image: '/3.png', description: 'Great for thick smoothies and fruit-based drinks' },
-    { id: 'prod-13mm', size: '13mm', use: 'Bubble Tea, Jelly Drinks', icon: '🧋', image: '/4.png', description: 'Perfect for bubble tea and drinks with toppings' }
+    { id: 'prod-6.5mm', size: '6.5mm', use: 'Water, Juice, Tea, Soda', icon: '💧', image: '/6.png', description: 'Perfect for everyday beverages and light drinks' },
+    { id: 'prod-8mm', size: '8mm', use: 'Smoothies, Milkshakes', icon: '🥤', image: '/8.png', description: 'Ideal for medium-thick beverages and protein shakes' },
+    { id: 'prod-10mm', size: '10mm', use: 'Thick Shakes, Fruit Blends', icon: '🍓', image: '/10.png', description: 'Great for thick smoothies and fruit-based drinks' },
+    { id: 'prod-13mm', size: '13mm', use: 'Bubble Tea, Jelly Drinks', icon: '🧋', image: '/13.png', description: 'Perfect for bubble tea and drinks with toppings' }
   ] as ProductVariant[], // Ensure these image paths are correct relative to your `public` folder
   vsPlastic: "Plastic: Non-biodegradable (400+ yrs), fossil fuel-based, pollutes ecosystems. Our Straws: Biodegradable (weeks), plant-based, nourishes soil.",
   vsPaper: "Paper: Often soggy, impacts taste, may contain non-compostable coatings. Our Straws: Durable, neutral taste, 100% home compostable.",
