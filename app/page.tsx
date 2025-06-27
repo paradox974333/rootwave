@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ProductCard } from "@/components/product-card"
 import { CheckoutForm } from "@/components/checkout-form"
+import { FloatingScrollButton } from "@/components/floating-cart-button";
 import { ContactForm } from "@/components/contact-form"
 import {
   CheckCircle,
@@ -1163,6 +1164,7 @@ export default function HomePage() {
     </div>
   </div>
 </footer>
+ <FloatingScrollButton targetId="checkout" />
     </div>
   )
 }

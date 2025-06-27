@@ -7,21 +7,21 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, ShoppingCart } from "lucide-react" // Removed Wheat as it wasn't used in Sheet
-import { useCart } from "@/contexts/cart-context" 
-import { CartDrawer } from "@/components/cart-drawer" 
+import { useCart } from "@/contexts/cart-context"
+import { CartDrawer } from "@/components/cart-drawer"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const { state } = useCart()
-  const router = useRouter(); 
+  const router = useRouter();
 
   // Define navigation items with types for handling
   const navigation = [
-    { name: "Home", href: "/", type: "pageOrScrollToHome" }, 
+    { name: "Home", href: "/", type: "pageOrScrollToHome" },
     { name: "About", href: "/#about", type: "scroll" },
     { name: "Products", href: "/#products", type: "scroll" },
-    { name: "Blogs", href: "/blogs", type: "page" }, 
+    { name: "Blogs", href: "/blogs", type: "page" },
      { name: "Why Rice Straws?", href: "/#comparison", type: "scroll" },
     { name: "Contact", href: "/#contact", type: "scroll" },
     { name: "GET FREE RICE STRAWS !!!", href: "/free-samples", type: "page" },
@@ -68,19 +68,19 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
-          
+
           {/* Logo and Brand Name - Links to Home */}
-          <button 
-            onClick={() => handleNavClick("/", "pageOrScrollToHome")} 
+          <button
+            onClick={() => handleNavClick("/", "pageOrScrollToHome")}
             className="flex items-center space-x-2 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-md p-1 -m-1"
             aria-label="Go to homepage"
           >
-            <Image 
+            <Image
               src="/logo icon -svg-01.png" // Ensure this is in /public directory
-              alt="Rootwave Logo" 
-              width={48} 
-              height={48} 
-              className="w-10 h-10 sm:w-12 sm:h-12 group-hover:scale-105 transition-transform duration-200" 
+              alt="Rootwave Logo"
+              width={48}
+              height={48}
+              className="w-10 h-10 sm:w-12 sm:h-12 group-hover:scale-105 transition-transform duration-200"
               priority // Prioritize loading the logo
             />
             <h1 className="text-xl sm:text-2xl font-bold text-green-700 group-hover:text-green-800 transition-colors">Rootwave</h1>
@@ -102,17 +102,17 @@ export function Header() {
 
           <div className="flex items-center space-x-2 sm:space-x-3">
             {/* Cart Button */}
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={() => setIsCartOpen(true)} 
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setIsCartOpen(true)}
               className="relative rounded-full w-9 h-9 sm:w-10 sm:h-10 border-gray-300 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
               aria-label={`Open shopping cart, ${state.itemCount} items`}
             >
               <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
               {state.itemCount > 0 && (
-                <Badge 
-                  variant="destructive" 
+                <Badge
+                  variant="destructive"
                   className="absolute -top-1.5 -right-1.5 text-[10px] sm:text-xs w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center rounded-full p-0 bg-red-600 text-white"
                 >
                   {state.itemCount > 99 ? "99+" : state.itemCount}
@@ -123,10 +123,10 @@ export function Header() {
             {/* Mobile Menu Trigger */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild className="lg:hidden">
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-gray-300 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500" 
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full w-9 h-9 sm:w-10 sm:h-10 border-gray-300 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
                   aria-label="Open navigation menu"
                 >
                   <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
@@ -134,8 +134,8 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[280px] sm:w-[300px] p-6 bg-white shadow-xl">
                 <div className="flex items-center justify-start mb-8"> {/* Changed justify-between to justify-start */}
-                    <button 
-                        onClick={() => handleNavClick("/", "pageOrScrollToHome")} 
+                    <button
+                        onClick={() => handleNavClick("/", "pageOrScrollToHome")}
                         className="flex items-center space-x-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-md p-1 -m-1"
                         aria-label="Go to homepage"
                     >
