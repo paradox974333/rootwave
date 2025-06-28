@@ -4,7 +4,7 @@ export const meta = {
   date: "2024-03-15",
   author: "Jane Doe, Sustainability Expert",
   readTimeMinutes: 4,
-  image: "/blog-images/rice-straws-field.jpg", // Path from /public
+  image: "/blog-images/DSC03089.JPG", // Path from /public
   tags: ["Rice Straws", "Sustainability", "Eco-Friendly Alternatives", "Plastic Pollution"],
   description: "An in-depth look at the benefits of rice straws and why they are superior to plastic and other alternatives in the fight against plastic pollution.",
   keywords: "rice straws, biodegradable straws, edible straws, plastic alternatives, sustainable products",

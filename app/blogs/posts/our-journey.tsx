@@ -6,7 +6,7 @@ export const meta = {
   date: "2024-02-10", // YYYY-MM-DD for sorting
   author: "The Rootwave Team",
   readTimeMinutes: 6,
-  image: "/blog-images/sample-blog-cover.jpg", // Path from /public directory
+  image: "/blog-images/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg", // Path from /public directory
   tags: ["Sustainability", "Innovation", "Rootwave", "Eco-Friendly"],
   description: "Discover Rootwave's mission to drive sustainable innovation, starting with edible rice straws and expanding to broader eco-friendly solutions.",
   keywords: "sustainable innovation, Rootwave, eco-friendly packaging, rice straws, green tech",
