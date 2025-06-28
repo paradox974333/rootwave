@@ -1,4 +1,4 @@
-"use client"
+"use client" // Keep the client directive
 
 import type React from "react"
 import { useState, useEffect } from "react"
@@ -12,10 +12,13 @@ import { Separator } from "@/components/ui/separator"
 // Assuming these context and hooks are correctly implemented and provided in your app
 import { useCart } from "@/contexts/cart-context"
 import { useToast } from "@/hooks/use-toast"
-import { Phone, Truck, Building, Mail, MessageCircle, CheckCircle, Clock, Users, Package } from "lucide-react" // Added Package icon for items
+import { Phone, Truck, Building, Mail, MessageCircle, CheckCircle, Clock, Users, Package, Send } from "lucide-react" // Added Send icon for submission
 import { Badge } from "@/components/ui/badge"
 // Assuming you have a LoadingSpinner component
 import { LoadingSpinner } from "@/components/loading-spinner"
+
+// IMPORTANT: Replace with your actual Make.com webhook URL
+const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/0i2fr31rleam9gt11yxd8bgelhgrws4e"; // <-- !!! REPLACE THIS !!!
 
 // Type definition for form data
 interface FormData {
@@ -27,14 +30,25 @@ interface FormData {
   city: string
   state: string
   pincode: string
-  orderMethod: 'email_quote' | 'whatsapp_quote' | 'phone_quote'
+  orderMethod: 'email_quote' | 'whatsapp_quote' | 'phone_quote' // Keep to send preferred contact method
   businessName: string
-  gstNumber: string // Optional
+  gstNumber: string | undefined // Optional, can be undefined or string
+}
+
+// Type definition for a cart item (adjust based on your cart-context structure)
+interface CartItem {
+  id: string
+  name: string
+  quantity: number
+  price: number
+  color?: string
+  diameter?: string
+  // Add other relevant item properties
 }
 
 export function CheckoutForm() {
   // Access cart state and dispatch, toast functionality
-  const { state, dispatch } = useCart()
+  const { state, dispatch } = useCart() // Assuming state.items is CartItem[] and state.total is number
   const { toast } = useToast()
 
   // State to manage loading/processing state during submission
@@ -52,9 +66,9 @@ export function CheckoutForm() {
     city: "",
     state: "",
     pincode: "",
-    orderMethod: "email_quote", // Default order method
+    orderMethod: "email_quote", // Default preferred contact method
     businessName: "",
-    gstNumber: "",
+    gstNumber: undefined, // Initialize as undefined
   })
 
   // State to hold form validation errors
@@ -71,20 +85,29 @@ export function CheckoutForm() {
   const standardShippingCost = 500 // ₹500
 
   // Calculate financial summaries (these re-calculate whenever state.total changes)
-  const gst = state.total * gstRate
+  // Ensure state.total is treated as a number, default to 0 if null/undefined
+  const subtotal = state.total ?? 0;
+  const gst = subtotal * gstRate;
   // Shipping is free if total is above the threshold, otherwise apply standard cost
-  const shipping = state.total > freeShippingThreshold ? 0 : standardShippingCost
+  const shipping = subtotal > freeShippingThreshold ? 0 : standardShippingCost;
   // Final total includes subtotal, GST, and shipping
-  const finalTotal = state.total + gst + shipping
+  const finalTotal = subtotal + gst + shipping;
+
 
   // Handler for input changes, updates state and clears corresponding error
-  const handleInputChange = (field: keyof FormData, value: string) => {
+  const handleInputChange = (field: keyof FormData, value: string | 'email_quote' | 'whatsapp_quote' | 'phone_quote') => {
     let cleanedValue = value;
-    // Clean non-digit characters for phone and pincode inputs
-    if (field === 'phone' || field === 'pincode') {
+    // Clean non-digit characters for phone and pincode inputs (only if value is string)
+    if (typeof value === 'string' && (field === 'phone' || field === 'pincode')) {
         cleanedValue = value.replace(/\D/g, '');
     }
-    setFormData((prev) => ({ ...prev, [field]: cleanedValue }))
+     // Handle GST number being optionally empty string
+     if (field === 'gstNumber' && cleanedValue === '') {
+         setFormData((prev) => ({ ...prev, [field]: undefined })); // Store empty GST as undefined
+     } else {
+         setFormData((prev) => ({ ...prev, [field]: cleanedValue as any })); // Type assertion needed due to cleanedValue type
+     }
+
     // If there was an error for this field, clear it when the user starts typing
     if (formErrors[field]) {
       setFormErrors((prev) => ({ ...prev, [field]: undefined })) // Use undefined to clear the specific key
@@ -96,107 +119,54 @@ export function CheckoutForm() {
     const errors: Partial<FormData> = {}
 
     // Check if required fields are empty or just whitespace
-    if (!formData.businessName.trim()) errors.businessName = "Business/Company name is required."
-    if (!formData.firstName.trim()) errors.firstName = "First name is required."
-    if (!formData.lastName.trim()) errors.lastName = "Last name is required."
+    if (!formData.businessName?.trim()) errors.businessName = "Business/Company name is required." // Use optional chaining
+    if (!formData.firstName?.trim()) errors.firstName = "First name is required." // Use optional chaining
+    if (!formData.lastName?.trim()) errors.lastName = "Last name is required." // Use optional chaining
 
     // Email validation
-    if (!formData.email.trim()) {
+    if (!formData.email?.trim()) { // Use optional chaining
         errors.email = "Email address is required."
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
         errors.email = "Please enter a valid email address."
     }
 
     // Phone number validation (after cleaning in handleInputChange)
-    if (!formData.phone.trim()) {
+    if (!formData.phone?.trim()) { // Use optional chaining
         errors.phone = "Phone number is required."
     } else if (!/^\d{10}$/.test(formData.phone)) {
         errors.phone = "Phone number must be 10 digits."
     }
 
     // Address validation
-    if (!formData.address.trim()) errors.address = "Complete address is required."
-    if (!formData.city.trim()) errors.city = "City is required."
-    if (!formData.state.trim()) errors.state = "State is required."
+    if (!formData.address?.trim()) errors.address = "Complete address is required." // Use optional chaining
+    if (!formData.city?.trim()) errors.city = "City is required." // Use optional chaining
+    if (!formData.state?.trim()) errors.state = "State is required." // Use optional chaining
 
     // PIN code validation (after cleaning in handleInputChange)
-    if (!formData.pincode.trim()) {
+    if (!formData.pincode?.trim()) { // Use optional chaining
         errors.pincode = "PIN code is required."
     } else if (!/^\d{6}$/.test(formData.pincode)) {
         errors.pincode = "PIN code must be 6 digits."
     }
 
-    // Update the formErrors state
-    setFormErrors(errors)
-    // Return true if the errors object is empty (no errors)
-    return Object.keys(errors).length === 0
-  }
-
-  // Function to generate the structured order summary text
-  const generateOrderSummary = (): string => {
-    let orderSummary = `🌾 BULK ORDER REQUEST - ROOTWAVE RICE STRAWS\n\n`;
-
-    // Business Information Section
-    orderSummary += `🏢 BUSINESS INFORMATION:\n`;
-    orderSummary += `Business Name: ${formData.businessName || 'N/A'}\n`; // Add N/A fallback
-    orderSummary += `Contact Person: ${formData.firstName || 'N/A'} ${formData.lastName || 'N/A'}\n`; // Add N/A fallback
-    orderSummary += `Email: ${formData.email || 'N/A'}\n`; // Add N/A fallback
-    orderSummary += `Phone: ${formData.phone || 'N/A'}\n`; // Add N/A fallback
-    if (formData.gstNumber) orderSummary += `GST Number: ${formData.gstNumber}\n`;
-    orderSummary += `\n`; // Add newline for spacing
-
-    // Shipping Address Section
-    orderSummary += `🚚 SHIPPING ADDRESS:\n`;
-    orderSummary += `${formData.address || 'N/A'}\n`; // Add N/A fallback
-    orderSummary += `${formData.city || 'N/A'}, ${formData.state || 'N/A'} - ${formData.pincode || 'N/A'}\n`; // Add N/A fallback
-    orderSummary += `\n`; // Add newline for spacing
-
-    // Order Details Section
-    orderSummary += `📦 ORDER DETAILS:\n`;
-    // Check if items exist and iterate
-    if (state.items && state.items.length > 0) {
-        state.items.forEach((item, index) => {
-          // Use nullish coalescing (??) or fallback for potential missing properties
-          const itemName = item.name ?? 'Unknown Item';
-          const itemDiameter = item.diameter ?? 'N/A';
-          const itemColor = item.color ?? 'N/A';
-          const itemQuantity = item.quantity ?? 0;
-          const itemPrice = item.price ?? 0;
-
-          orderSummary += `${index + 1}. ${itemName} (${itemDiameter})\n`;
-          orderSummary += `   🎨 Color: ${itemColor}\n`;
-          orderSummary += `   📊 Quantity: ${itemQuantity.toLocaleString()} straws\n`;
-          orderSummary += `   💰 Price: ₹${itemPrice.toFixed(2)} per straw\n`;
-          orderSummary += `   💵 Subtotal: ₹${(itemPrice * itemQuantity).toLocaleString()}\n\n`;
-        });
-    } else {
-         orderSummary += `   No items added to the order request.\n\n`; // Message if cart is empty (though UI should prevent this)
+    // Add a check for empty cart (though UI should prevent submission in this state)
+    if (!state.items || state.items.length === 0) {
+        // This is more of a logic error if the button is clickable, but good safeguard
+        console.error("Attempted to submit empty cart");
+        // Maybe add a non-field error or use a toast
+         toast({
+           title: "⚠️ Cart is Empty",
+           description: "Please add items to your cart before submitting a quote request.",
+           variant: "destructive",
+         });
+         return false; // Indicate validation failure
     }
 
 
-    // Order Summary Section (Financials)
-    orderSummary += `💳 ORDER SUMMARY:\n`;
-    orderSummary += `Subtotal: ₹${state.total.toLocaleString()}\n`;
-    orderSummary += `GST (${gstRate * 100}%): ₹${gst.toLocaleString()}\n`;
-    orderSummary += `Shipping: ${shipping === 0 ? "Free ✅" : `₹${shipping.toLocaleString()}`}\n`;
-    orderSummary += `TOTAL: ₹${finalTotal.toLocaleString()}\n\n`;
-
-    // Order Method Section
-    const orderMethodText = {
-      email_quote: "📧 Email Quote Request",
-      whatsapp_quote: "💬 WhatsApp Quote Request",
-      phone_quote: "📞 Phone Quote Request",
-    } as const; // Use 'as const' for type safety
-
-    orderSummary += `📋 ORDER METHOD: ${orderMethodText[formData.orderMethod]}\n\n`; // Use the selected method text
-
-    // Closing message
-    orderSummary += `Please provide a detailed quote and confirm the order details.\n`;
-    orderSummary += `We look forward to doing business with you! 🤝\n\n`;
-    orderSummary += `Best regards,\n${formData.firstName} ${formData.lastName}\n${formData.businessName}\n\n`;
-    orderSummary += `🌱 Together for a sustainable future! 🌍`;
-
-    return orderSummary
+    // Update the formErrors state
+    setFormErrors(errors)
+    // Return true if the errors object is empty (no errors) AND cart is not empty
+    return Object.keys(errors).length === 0 && state.items.length > 0;
   }
 
   // Handle form submission
@@ -205,15 +175,10 @@ export function CheckoutForm() {
 
     // Validate the form before proceeding
     if (!validateForm()) {
-      toast({
-        title: "❌ Form Validation Error",
-        description: "Please fill in all required fields correctly.",
-        variant: "destructive",
-      })
-      // Optional: Scroll to the first error field for better UX
+      // validateForm now handles the toast for validation errors
+      // Optional: Scroll to the first error field for better UX (logic kept from original)
       const firstErrorField = Object.keys(formErrors).find(key => formErrors[key as keyof FormData]);
        if (firstErrorField) {
-         // Use a timeout to ensure toast doesn't block scrolling
          setTimeout(() => {
             document.getElementById(firstErrorField)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
          }, 100);
@@ -224,201 +189,92 @@ export function CheckoutForm() {
     // Set processing state to disable inputs and show spinner
     setIsProcessing(true)
 
+    // Construct the payload to send to Make.com
+    const payload = {
+      businessInfo: {
+        businessName: formData.businessName,
+        gstNumber: formData.gstNumber, // Will be undefined if empty
+      },
+      contactPerson: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+      },
+      shippingAddress: {
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+      },
+      orderMethodPreference: formData.orderMethod, // User's preferred contact method
+      cartItems: state.items.map(item => ({ // Map cart items to a clean structure for webhook
+          id: item.id,
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          color: item.color,
+          diameter: item.diameter,
+          itemSubtotal: (item.quantity ?? 0) * (item.price ?? 0) // Calculate subtotal for each item in payload
+          // Include other necessary item details
+      })),
+      financialSummary: {
+        subtotal: subtotal,
+        gstAmount: gst,
+        shippingCost: shipping,
+        totalAmount: finalTotal,
+        freeShippingThreshold: freeShippingThreshold,
+        gstRate: gstRate,
+      },
+      timestamp: new Date().toISOString(), // Add timestamp for record-keeping
+      // You could add origin information if needed (e.g., "website form submission")
+      // origin: "Rootwave Website Checkout Form"
+    };
+
+    console.log("Sending payload to Make.com:", payload); // Log payload before sending
+
     try {
-      // Generate the order summary string
-      const orderSummary = generateOrderSummary()
-      const contactNumber = '917760021026'; // Ensure this is the correct number with country code
+      // Send the data to the Make.com webhook URL
+      const response = await fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any necessary authentication headers if your webhook requires them (uncommon for basic webhooks)
+        },
+        body: JSON.stringify(payload),
+      });
 
-      // Handle submission based on the selected order method
-      if (formData.orderMethod === "whatsapp_quote") {
-        // Encode the message for the URL
-        const whatsappMessage = encodeURIComponent(orderSummary)
-        // Construct the WhatsApp Web/App link
-        const whatsappLink = `https://wa.me/${contactNumber}?text=${whatsappMessage}`
-
-        // Open the link in a new tab/window
-        window.open(whatsappLink, "_blank")
-
-        toast({
-          title: "💬 WhatsApp Opened Successfully!",
-          description:
-            "WhatsApp has been opened with your order details. Please send the pre-filled message to initiate your quote request.",
-        })
-
-      } else if (formData.orderMethod === "phone_quote") {
-        // Try to copy the summary to clipboard
-        try {
-          // navigator.clipboard is only available in secure contexts (HTTPS)
-          if (navigator.clipboard && window.isSecureContext) {
-             await navigator.clipboard.writeText(orderSummary)
-             toast({
-               title: "📋 Order Details Copied!",
-               description: "Order details copied to clipboard. Calling our team now...",
-             })
-          } else {
-             // Fallback toast if clipboard is not available
-             toast({
-               title: "ℹ️ Order Details Available",
-               description: "Calling our team now. Please have your order details ready for reference.",
-              
-             });
-             console.log("Clipboard write not available. Order Summary:", orderSummary); // Log for reference
-          }
-
-        } catch (error) {
-          // Log any clipboard errors but don't block the phone call
-          console.error("Failed to copy to clipboard:", error)
-           toast({
-               title: "⚠️ Clipboard Issue",
-               description: "Couldn't copy details automatically. Please refer to the order summary popup.",
-              
-           });
-        }
-
-        // Attempt to open the phone dialer
-        // This might not work universally, especially on desktop, but it's the standard approach
-        window.location.href = `tel:+${contactNumber}`
-
-        // Open a new window to display the order summary for reference during the call
-        const orderWindow = window.open("", "_blank", "width=700,height=900,scrollbars=yes");
-        if (orderWindow) {
-          // Write HTML content to the new window
-          orderWindow.document.write(`
-            <html>
-              <head>
-                <title>📞 Order Details - Rootwave</title>
-                <style>
-                   /* Basic reset and font smoothing */
-                   body { margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-                   /* Improved font stack */
-                   body {
-                     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-                     padding: 20px; /* Consistent padding */
-                     line-height: 1.6;
-                     background: #f8fafc;
-                     color: #333;
-                   }
-                   .container {
-                     background: white;
-                     padding: 20px;
-                     border-radius: 8px;
-                     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-                     max-width: 600px;
-                     margin: 0 auto;
-                     border-top: 5px solid #16a34a;
-                   }
-                   h2 {
-                     color: #16a34a;
-                     text-align: center;
-                     margin-bottom: 20px;
-                     font-size: 20px;
-                     font-weight: 600;
-                   }
-                   pre {
-                     background: #eef2ff;
-                     padding: 15px;
-                     border-radius: 6px;
-                     white-space: pre-wrap;
-                     word-wrap: break-word;
-                     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* Monospace font */
-                     font-size: 13px;
-                     line-height: 1.5;
-                     border: 1px solid #c7d2fe;
-                     overflow-x: auto; /* Allow horizontal scroll */
-                   }
-                   .highlight {
-                     background: #dcfce7;
-                     padding: 15px;
-                     border-radius: 8px;
-                     margin-top: 20px;
-                     border: 1px solid #16a34a;
-                     color: #14532d;
-                   }
-                   .highlight strong {
-                       color: #16a34a;
-                   }
-                   .footer {
-                     text-align: center;
-                     margin-top: 20px;
-                     color: #6b7280;
-                     font-size: 11px;
-                   }
-                   /* Responsive adjustments for smaller popups */
-                   @media (max-width: 600px) {
-                       body { padding: 10px; }
-                       .container { padding: 15px; }
-                       h2 { font-size: 18px; margin-bottom: 15px; }
-                       pre { padding: 10px; font-size: 12px; }
-                       .highlight { padding: 10px; margin-top: 15px; }
-                       .footer { margin-top: 15px; font-size: 10px; }
-                   }
-                </style>
-              </head>
-              <body>
-                <div class="container">
-                  <h2>📞 Order Details for Phone Call</h2>
-                  <pre>${orderSummary}</pre>
-                  <div class="highlight">
-                    <strong>📋 Please reference these details during your call with our team.</strong>
-                    <br><br>
-                    📞 <strong>Calling:</strong> +${contactNumber}<br>
-                    ⏰ <strong>Business Hours:</strong> 9:00 AM - 6:00 PM (Mon-Sat)
-                  </div>
-                  <div class="footer">
-                    🌱 Rootwave - Sustainable Solutions for a Better Tomorrow
-                  </div>
-                </div>
-              </body>
-            </html>
-          `);
-          orderWindow.document.close(); // Important to close the document stream
-          orderWindow.focus(); // Bring the new window to the front
-        } else {
-            // Handle cases where the popup was blocked by the browser
-            toast({
-               title: "⚠️ Popup Blocked",
-               description: "Please allow popups to view order details in a new window for your reference during the call.",
-               
-            });
-        }
-
-      } else {
-        // Default to email integration ("email_quote" or any other value)
-        const subject = encodeURIComponent(`🌾 Bulk Order Request - ${formData.businessName || 'Rootwave Customer'}`) // Add fallback for business name
-        const body = encodeURIComponent(orderSummary)
-        const mailtoLink = `mailto:info@rootwave.org?subject=${subject}&body=${body}` // Ensure this is the correct email address
-
-        // Attempt to open the user's default email client
-        window.location.href = mailtoLink
-
-        toast({
-          title: "📧 Email Client Opened Successfully!",
-          description:
-            "Your email client has been opened with your order details. Please send the pre-filled email to complete your quote request.",
-        })
+      // Check if the HTTP request was successful (status code 2xx)
+      // Make.com webhooks typically return 200 OK with 'Accepted' text
+      if (!response.ok) {
+        const errorBody = await response.text(); // Read error response body
+        console.error("Make.com webhook error response:", response.status, errorBody);
+        throw new Error(`Webhook request failed: ${response.status} ${response.statusText} - ${errorBody}`);
       }
 
-      // Clear the cart after the request is initiated
-      // Use a small delay to allow the external action (opening app/window) to happen
-      setTimeout(() => {
-        dispatch({ type: "CLEAR_CART" }) // Assuming this action type exists and works
-        toast({
-          title: "✅ Order Request Initiated",
-          description: "Your request has been sent. We will contact you shortly!",
-          
-        })
-      }, 1000) // 1 second delay
-
-    } catch (error) {
-      console.error("Order processing error:", error)
+      // Success: Show toast and clear cart
+      console.log("Successfully sent data to Make.com webhook.");
       toast({
-        title: "❌ Processing Error",
-        description: "Failed to initiate order request. Please contact us directly at info@rootwave.org or +91 77600 21026",
+        title: "✅ Quote Request Submitted!",
+        description: "Your detailed quote request has been sent to our team. We will contact you shortly based on your preferred method.",
+      });
+
+      // Clear the cart after successful submission
+      // Use a small delay if needed, but generally not necessary for backend submission
+      // setTimeout(() => { // Optional delay
+          dispatch({ type: "CLEAR_CART" }); // Assuming this action type exists
+      // }, 500); // Optional delay time
+
+    } catch (error: any) { // Catch network errors or errors from response.ok check
+      console.error("Error submitting quote request to Make.com:", error);
+      toast({
+        title: "❌ Submission Failed",
+        description: `Failed to send your quote request. Please try again or contact us directly. Error: ${error.message}`,
         variant: "destructive",
-      })
+      });
     } finally {
-      // Always set processing state back to false after try/catch block finishes
-      setIsProcessing(false)
+      // Always set processing state back to false
+      setIsProcessing(false);
     }
   }
 
@@ -434,37 +290,39 @@ export function CheckoutForm() {
   }
 
   // Show an empty cart message if there are no items
-  if (state.items.length === 0) {
-    return (
-      // Added padding for mobile screens
-      <div className="py-10 md:py-20 px-4 text-center">
-        <div className="max-w-md mx-auto">
-          {/* Icon */}
-          <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
-            <Package className="w-12 h-12 text-gray-400" /> {/* Using Package icon */}
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h3>
-          <p className="text-gray-600 mb-8">Add some eco-friendly rice straws to get started with your bulk order.</p>
-          {/* Button to browse products */}
-          <Button
-            size="lg"
-            className="bg-green-600 hover:bg-green-700"
-            onClick={() => {
-              // Attempt to scroll to an element with id="products", fallback to top
-              const productsSection = document.getElementById("products");
-              if (productsSection) {
-                productsSection.scrollIntoView({ behavior: "smooth" });
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            🛍️ Browse Products
-          </Button>
-        </div>
-      </div>
-    )
+  if (!state.items || state.items.length === 0) {
+     return (
+       // Added padding for mobile screens
+       <div className="py-10 md:py-20 px-4 text-center">
+         <div className="max-w-md mx-auto">
+           {/* Icon */}
+           <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+             <Package className="w-12 h-12 text-gray-400" /> {/* Using Package icon */}
+           </div>
+           <h3 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h3>
+           <p className="text-gray-600 mb-8">Add some eco-friendly rice straws to get started with your bulk order.</p>
+           {/* Button to browse products */}
+           <Button
+             size="lg"
+             className="bg-green-600 hover:bg-green-700"
+             onClick={() => {
+               // Attempt to scroll to an element with id="products", fallback to top
+               const productsSection = document.getElementById("products");
+               if (productsSection) {
+                 productsSection.scrollIntoView({ behavior: "smooth" });
+               } else {
+                 // Fallback to scrolling to the top of the page
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+               }
+             }}
+           >
+             🛍️ Browse Products
+           </Button>
+         </div>
+       </div>
+     )
   }
+
 
   // Main checkout form UI when cart has items
   return (
@@ -508,7 +366,9 @@ export function CheckoutForm() {
                       <span>💰 ₹{item.price?.toFixed(2) ?? 'N/A'}/straw</span> {/* Use ?? for price too */}
                     </div>
                     {/* Bulk discount badge */}
+                    {/* Assuming bulk discount logic exists in cart context */}
                     {item.quantity >= 50000 && (
+                       // Example check, adjust based on your cart logic
                       <Badge variant="secondary" className="text-xs mt-2 bg-green-100 text-green-800 inline-flex items-center">
                         🎉 Bulk Discount Applied
                       </Badge>
@@ -516,7 +376,7 @@ export function CheckoutForm() {
                   </div>
                   {/* Item subtotal */}
                   <div className="text-left sm:text-right w-full sm:w-auto">
-                    <p className="font-bold text-lg text-green-600">₹{(item.price * item.quantity).toLocaleString()}</p>
+                    <p className="font-bold text-lg text-green-600">₹{((item.price ?? 0) * (item.quantity ?? 0)).toLocaleString()}</p> {/* Use ?? for safety */}
                   </div>
                 </div>
               </div>
@@ -528,11 +388,11 @@ export function CheckoutForm() {
             <div className="bg-green-50 p-4 rounded-lg space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Subtotal:</span>
-                <span className="font-medium">₹{state.total.toLocaleString()}</span>
+                <span className="font-medium">₹{subtotal.toLocaleString()}</span> {/* Use calculated subtotal */}
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">GST ({gstRate * 100}%):</span>
-                <span className="font-medium">₹{gst.toLocaleString()}</span>
+                <span className="font-medium">₹{gst.toLocaleString()}</span> {/* Use calculated gst */}
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Shipping:</span>
@@ -547,7 +407,7 @@ export function CheckoutForm() {
               <Separator />
               <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-gray-900">Total:</span>
-                <span className="text-2xl font-bold text-green-600">₹{finalTotal.toLocaleString()}</span>
+                <span className="text-2xl font-bold text-green-600">₹{finalTotal.toLocaleString()}</span> {/* Use calculated finalTotal */}
               </div>
             </div>
 
@@ -560,7 +420,7 @@ export function CheckoutForm() {
           </CardContent>
         </Card>
 
-        {/* Checkout Form Card */}
+        {/* Quote Request Form Card */}
         <Card className="border-green-200 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-green-50 to-green-100 rounded-t-lg p-4 sm:p-6"> {/* Adjusted padding */}
             <CardTitle className="flex items-center text-green-800 text-xl sm:text-2xl"> {/* Adjusted text size */}
@@ -568,7 +428,7 @@ export function CheckoutForm() {
               Request Quote
             </CardTitle>
             <CardDescription className="text-green-700 text-sm sm:text-base"> {/* Adjusted text size */}
-              Complete your bulk order request by providing your business details
+              Provide your details below to request a bulk order quote
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6"> {/* Adjusted padding */}
@@ -596,7 +456,7 @@ export function CheckoutForm() {
                       className={`mt-1 w-full ${formErrors.businessName ? "border-red-500 focus:border-red-500" : "border-gray-300 focus:border-green-500"}`}
                       placeholder="Enter your business name"
                       disabled={isProcessing}
-                      aria-invalid={formErrors.businessName ? "true" : "false"} 
+                      aria-invalid={formErrors.businessName ? "true" : "false"}
                       aria-describedby={formErrors.businessName ? "businessName-error" : undefined}
                     />
                     {formErrors.businessName && (
@@ -614,7 +474,7 @@ export function CheckoutForm() {
                     </Label>
                     <Input
                       id="gstNumber"
-                      value={formData.gstNumber}
+                      value={formData.gstNumber || ''} // Use empty string for controlled input if value is undefined
                       onChange={(e) => handleInputChange("gstNumber", e.target.value)}
                       className="mt-1 w-full border-gray-300 focus:border-green-500"
                       placeholder="Enter GST number if available"
@@ -845,17 +705,17 @@ export function CheckoutForm() {
 
               <Separator /> {/* Add a separator */}
 
-              {/* Order Method Section */}
+              {/* Preferred Contact Method Section */}
               <div className="space-y-4">
                 <div className="flex items-center mb-4">
                   <div className="bg-orange-600 p-2 rounded-lg mr-3 flex-shrink-0">
                     <MessageCircle className="w-5 h-5 text-white" /> {/* Icon for communication method */}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 flex-grow">Choose Order Method</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 flex-grow">How Should We Contact You?</h3>
                 </div>
 
                 {/* Select Component for Order Method */}
-                 <Label htmlFor="orderMethod" className="sr-only">Choose Order Method</Label> {/* Screen reader only label */}
+                 <Label htmlFor="orderMethod" className="sr-only">Preferred Contact Method</Label> {/* Screen reader only label */}
                 <Select
                   value={formData.orderMethod}
                   onValueChange={(value: 'email_quote' | 'whatsapp_quote' | 'phone_quote') => handleInputChange("orderMethod", value)}
@@ -863,7 +723,7 @@ export function CheckoutForm() {
                 >
                   {/* Select Trigger - full width on mobile */}
                   <SelectTrigger id="orderMethod" className="w-full border-gray-300 focus:border-green-500 text-base py-2 h-auto">
-                    <SelectValue placeholder="Select how you'd like to receive your quote" /> {/* Added placeholder */}
+                    <SelectValue placeholder="Select your preferred method for our response" /> {/* Added placeholder */}
                   </SelectTrigger>
                   {/* Select Content with options */}
                   <SelectContent>
@@ -871,8 +731,8 @@ export function CheckoutForm() {
                       <div className="flex items-center py-2">
                         <Mail className="w-4 h-4 mr-3 text-blue-600 flex-shrink-0" />
                         <div>
-                          <div className="font-medium text-base">📧 Email Quote Request</div>
-                          <div className="text-xs text-gray-500">Recommended - Professional & Detailed</div>
+                          <div className="font-medium text-base">📧 Email</div>
+                          <div className="text-xs text-gray-500">Receive your detailed quote via email.</div>
                         </div>
                       </div>
                     </SelectItem>
@@ -880,8 +740,8 @@ export function CheckoutForm() {
                       <div className="flex items-center py-2">
                         <MessageCircle className="w-4 h-4 mr-3 text-green-600 flex-shrink-0" />
                         <div>
-                          <div className="font-medium text-base">💬 WhatsApp Quote Request</div>
-                          <div className="text-xs text-gray-500">Instant - Quick Response</div>
+                          <div className="font-medium text-base">💬 WhatsApp</div>
+                          <div className="text-xs text-gray-500">Get a quick response via WhatsApp chat.</div>
                         </div>
                       </div>
                     </SelectItem>
@@ -889,8 +749,8 @@ export function CheckoutForm() {
                       <div className="flex items-center py-2">
                         <Phone className="w-4 h-4 mr-3 text-purple-600 flex-shrink-0" />
                         <div>
-                          <div className="font-medium text-base">📞 Phone Quote Request</div>
-                          <div className="text-xs text-gray-500">Direct - Immediate Assistance</div>
+                          <div className="font-medium text-base">📞 Phone Call</div>
+                          <div className="text-xs text-gray-500">Receive a call to discuss your request.</div>
                         </div>
                       </div>
                     </SelectItem>
@@ -902,104 +762,60 @@ export function CheckoutForm() {
                   <div className="flex items-start mb-4">
                     <Clock className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-sm font-semibold text-blue-800 mb-2">How it works:</p>
+                      <p className="text-sm font-semibold text-blue-800 mb-2">What Happens Next:</p>
                       <div className="text-sm text-blue-700 space-y-2">
-                        {/* Steps for Email Method */}
-                        {formData.orderMethod === "email_quote" && (
-                          <>
-                            <div className="flex items-start">
-                              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">1</span>
-                              Submit your order details via email client
-                            </div>
-                            <div className="flex items-start">
-                              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">2</span>
-                              We'll send you a detailed quote within 24 hours
-                            </div>
-                            <div className="flex items-start">
-                              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">3</span>
-                              Confirm your order and payment method
-                            </div>
-                            <div className="flex items-start">
-                              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">4</span>
-                              We'll process and ship your bulk order
-                            </div>
-                          </>
-                        )}
-                        {/* Steps for WhatsApp Method */}
-                        {formData.orderMethod === "whatsapp_quote" && (
-                          <>
-                             <div className="flex items-start">
-                               <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">1</span>
-                               Submit your order details via WhatsApp
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">2</span>
-                               Get instant response and detailed quote
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">3</span>
-                               Discuss and confirm order details via chat
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">4</span>
-                               We'll process and ship your bulk order
-                             </div>
-                          </>
-                        )}
-                        {/* Steps for Phone Method */}
-                        {formData.orderMethod === "phone_quote" && (
-                          <>
-                             <div className="flex items-start">
-                               <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">1</span>
-                               Call our team with your order details
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">2</span>
-                               Get instant quote and pricing discussion
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">3</span>
-                               Confirm order details over the phone
-                             </div>
-                             <div className="flex items-start">
-                               <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">4</span>
-                               We'll process and ship your bulk order
-                             </div>
-                          </>
-                        )}
+                         {/* Unified steps */}
+                         <div className="flex items-start">
+                           <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">1</span>
+                           Your details and cart items are sent securely.
+                         </div>
+                         <div className="flex items-start">
+                           <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">2</span>
+                           Our team reviews your bulk order request.
+                         </div>
+                          <div className="flex items-start">
+                            <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">3</span>
+                           We will contact you with a detailed quote using your preferred method ({formData.orderMethod === 'email_quote' ? 'Email' : formData.orderMethod === 'whatsapp_quote' ? 'WhatsApp' : 'Phone Call'}).
+                          </div>
+                         <div className="flex items-start">
+                           <span className="bg-orange-600 text-white text-xs px-2 py-1 rounded-full mr-2 flex-shrink-0 mt-0.5">4</span>
+                           Once confirmed, we process and ship your order.
+                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Quick Contact Buttons (Flex wrap on small screens) */}
+                  {/* Quick Contact Buttons (Optional - keep as alternative methods) */}
                   <div className="border-t border-blue-200 pt-4">
-                    <p className="text-xs text-blue-600 mb-3 font-medium">🚀 Quick Contact Options:</p>
+                    <p className="text-xs text-blue-600 mb-3 font-medium">Need immediate assistance?</p>
                     <div className="flex flex-wrap gap-2">
-                      {/* WhatsApp Button */}
+                      {/* WhatsApp Button (Hardcoded contact number if desired, DIFFERENT from submission) */}
+                       {/* NOTE: Replace with actual contact number if different from submission target */}
                       <a
-                        href={`https://wa.me/${9244823663}?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20bulk%20ordering%20rice%20straws.%20Please%20send%20me%20pricing%20details.`}
+                        href={`https://wa.me/${917760021026}?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20bulk%20ordering%20rice%20straws%20and%20need%20immediate%20help.`}
                         target="_blank"
                         rel="noopener noreferrer" // Good practice for external links
                         className="inline-flex items-center px-3 py-2 bg-green-600 text-white rounded-lg text-xs hover:bg-green-700 transition-colors shadow-sm"
                       >
                         <MessageCircle className="w-3 h-3 mr-1" />
-                        WhatsApp
+                        WhatsApp Now
                       </a>
-                      {/* Call Button */}
+                      {/* Call Button (Hardcoded contact number if desired, DIFFERENT from submission) */}
+                       {/* NOTE: Replace with actual contact number if different from submission target */}
                       <a
-                        href={`tel:+${9244823663}`}
+                        href={`tel:+${917760021026}`}
                         className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg text-xs hover:bg-blue-700 transition-colors shadow-sm"
                       >
                         <Phone className="w-3 h-3 mr-1" />
-                        Call Now
+                        Call Direct
                       </a>
-                      {/* Email Button */}
+                      {/* Email Button (Hardcoded email if desired, DIFFERENT from submission) */}
                       <a
                         href="mailto:info@rootwave.org"
                         className="inline-flex items-center px-3 py-2 bg-gray-600 text-white rounded-lg text-xs hover:bg-gray-700 transition-colors shadow-sm"
                       >
                         <Mail className="w-3 h-3 mr-1" />
-                        Email
+                        Email Us
                       </a>
                     </div>
                   </div>
@@ -1011,19 +827,17 @@ export function CheckoutForm() {
                 type="submit"
                 className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 md:py-4 text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 // Button is disabled if processing or if the cart is empty
-                disabled={isProcessing || state.items.length === 0}
+                disabled={isProcessing || !state.items || state.items.length === 0} // Ensure items exist and is not empty
               >
                 {isProcessing ? (
                   // Show spinner and processing text when processing
-                  <LoadingSpinner size="sm" text="Processing..." />
+                  <LoadingSpinner size="sm" text="Submitting..." />
                 ) : (
-                  // Show relevant icon and text based on selected method
+                  // Show a generic send icon for submission
                   <>
-                    {formData.orderMethod === "email_quote" && <Mail className="w-5 h-5 mr-2" />}
-                    {formData.orderMethod === "whatsapp_quote" && <MessageCircle className="w-5 h-5 mr-2" />}
-                    {formData.orderMethod === "phone_quote" && <Phone className="w-5 h-5 mr-2" />}
+                    <Send className="w-5 h-5 mr-2" />
                     <span>
-                       Request Quote {finalTotal > 0 && `- ₹${finalTotal.toLocaleString()}`} {/* Show total if greater than 0 */}
+                       Submit Quote Request {finalTotal > 0 && `- ₹${finalTotal.toLocaleString()}`} {/* Show total if greater than 0 */}
                     </span>
                   </>
                 )}
@@ -1035,22 +849,7 @@ export function CheckoutForm() {
                   🔒 By submitting this request, you agree to our Terms of Service and Privacy Policy.
                 </p>
                 <div className="flex items-center justify-center text-xs text-gray-500">
-                     {/* Dynamic expected response time based on method */}
-                     {formData.orderMethod === "email_quote" && (
-                       <>
-                         <Clock className="w-3 h-3 mr-1 flex-shrink-0" />Expected response: within 24 hours via email.
-                       </>
-                     )}
-                     {formData.orderMethod === "whatsapp_quote" && (
-                       <>
-                         <MessageCircle className="w-3 h-3 mr-1 flex-shrink-0" />Expected response: instant via WhatsApp chat.
-                       </>
-                     )}
-                     {formData.orderMethod === "phone_quote" && (
-                       <>
-                         <Phone className="w-3 h-3 mr-1 flex-shrink-0" />Expected response: immediate via phone call.
-                       </>
-                     )}
+                     <Clock className="w-3 h-3 mr-1 flex-shrink-0" />Expected response: Typically within 24 hours during business days.
                 </div>
               </div>
             </form>
