@@ -5,7 +5,7 @@ import { Shield, ArrowRight, Mail, CheckCircle, Phone, Gift, Star, Recycle, Luci
 import { toast } from "@/hooks/use-toast"; // Ensure this path is correct for your project
 
 // --- CONSTANTS ---
-const TARGET_WHATSAPP_NUMBER = '917760021026';
+const TARGET_WHATSAPP_NUMBER = '919244823663';
 const COMPANY_NAME = "RootWave";
 const WEBSITE_URL = "www.rootwave.org";
 const DATA_SUBMISSION_WEBHOOK_URL = 'https://hook.eu2.make.com/clrhjur8lnbh1hlkq9ecbivb4tkboyog';
@@ -66,7 +66,7 @@ const BUSINESS_TYPES = [
   { value: 'distributor', label: 'Distributor/Wholesaler' },
   { value: 'retailer', label: 'Retailer' },
   { value: 'event_organizer', label: 'Event Organizer' },
-  { value: 'other', label: 'Other' },
+  { value: 'other', label: 'individual' },
 ] as const;
 
 type FormData = {
