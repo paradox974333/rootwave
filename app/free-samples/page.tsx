@@ -66,7 +66,7 @@ const BUSINESS_TYPES = [
   { value: 'distributor', label: 'Distributor/Wholesaler' },
   { value: 'retailer', label: 'Retailer' },
   { value: 'event_organizer', label: 'Event Organizer' },
-  { value: 'other', label: 'individual' },
+  { value: 'individual', label: 'individual' },
 ] as const;
 
 type FormData = {
@@ -441,7 +441,7 @@ const SampleForm: React.FC<{
             <Gift className="h-10 w-10 text-emerald-600" aria-hidden="true" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 balance-text">Request Free Samples</h2>
-          <p className="text-gray-600 leading-relaxed balance-text">We'll send you a complete sample pack at no cost with free nationwide shipping.</p>
+          <p className="text-gray-600 leading-relaxed balance-text">We'll send you a complete sample pack at no cost with free nationwide shipping.(if individual means it includes shipping cost)</p>
         </div>
         <form onSubmit={onSubmit} className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
           <div className="text-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border border-emerald-200">
