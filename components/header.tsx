@@ -24,7 +24,7 @@ export function Header() {
     { name: "Blogs", href: "/blogs", type: "page" },
      { name: "Why Rice Straws?", href: "/#comparison", type: "scroll" },
     { name: "Contact", href: "/#contact", type: "scroll" },
-    { name: "GET FREE RICE STRAWS !!!", href: "/free-samples", type: "page" },
+    { name: "GET RICE STRAWSAMPLES", href: "/free-samples", type: "page" },
   ];
 
   const handleNavClick = (href: string, type: "scroll" | "page" | "pageOrScrollToHome") => {
