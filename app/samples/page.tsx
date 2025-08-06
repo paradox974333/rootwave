@@ -234,7 +234,7 @@ const SampleRequestPage: React.FC = () => {
                 <Package className="h-10 w-10 text-emerald-600" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 balance-text">Request Samples</h2>
-              <p className="text-gray-600 leading-relaxed balance-text">We'll send you a complete sample pack. Note: Shipping costs apply (free shipping for businesses; individuals pay shipping).</p>
+              <p className="text-gray-600 leading-relaxed balance-text">We’ll send you 1 box of RootWave rice straws as a sample. Shipping cost will be applied.</p>
             </div>
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
               <div className="text-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border border-emerald-200">
