@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, ChangeEvent, FormEvent, useMemo } from 'react';
 import { toast } from "@/hooks/use-toast"; // Ensure this path is correct for your project
-import { Shield, ArrowRight, Mail, CheckCircle, Phone, Gift, Star, Recycle, LucideIcon, Menu, X, Home, Briefcase, MapPin, Package } from 'lucide-react';
+import { Shield, ArrowRight, Mail, CheckCircle, Phone, Gift, Star, Recycle, LucideIcon, Menu, X, Home, Briefcase, MapPin, Package, Flag } from 'lucide-react';
 
 // --- CONSTANTS ---
 const TARGET_WHATSAPP_NUMBER = '919244823663';
@@ -225,29 +225,53 @@ const SampleRequestPage: React.FC = () => {
   }, [formData, isFormValid, isSubmitting]);
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-white text-gray-800 font-sans antialiased selection:bg-orange-500 selection:text-white">
+      {/* Independence Day decorative elements */}
+      <div className="fixed top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-white to-green-600 z-50"></div>
+      
       <main>
-        <section className="py-20 md:py-24 bg-gradient-to-br from-emerald-50 to-green-50">
-          <div className="max-w-lg mx-auto px-4">
+        <section className="py-20 md:py-24 bg-gradient-to-br from-orange-50 via-white to-green-50 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-10 right-10 w-20 h-20 bg-orange-200 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 left-10 w-16 h-16 bg-green-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
+          
+          <div className="max-w-lg mx-auto px-4 relative">
             <div className="text-center mb-12">
-              <div className="w-20 h-20 bg-emerald-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                <Package className="h-10 w-10 text-emerald-600" aria-hidden="true" />
+              {/* Independence Day themed header */}
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-green-100 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Flag className="h-10 w-10 text-orange-600" aria-hidden="true" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 balance-text">Request Samples</h2>
-              <p className="text-gray-600 leading-relaxed balance-text">We’ll send you 1 box of RootWave rice straws as a sample. Shipping cost will be applied.</p>
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-gray-900 to-green-600 bg-clip-text text-transparent mb-4 balance-text">
+                Request Samples
+              </h2>
+              <div className="flex items-center justify-center mb-4">
+                <div className="w-8 h-1 bg-orange-500 rounded-full"></div>
+                <div className="w-8 h-1 bg-white border border-gray-300 rounded-full mx-1"></div>
+                <div className="w-8 h-1 bg-green-600 rounded-full"></div>
+              </div>
+              <p className="text-gray-600 leading-relaxed balance-text">
+                We'll send you 1 box of RootWave rice straws as a sample. Shipping cost will be applied.
+              </p>
             </div>
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-6">
-              <div className="text-center p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl border border-emerald-200">
-                <p className="text-emerald-700 font-semibold text-sm flex items-center justify-center gap-2">
-                  <CheckCircle className="h-4 w-4" aria-hidden="true" />
+            
+            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-xl border-2 border-gray-100 space-y-6 relative">
+              {/* Tricolor accent border */}
+              <div className="absolute -top-1 left-4 right-4 h-1 bg-gradient-to-r from-orange-500 via-white to-green-600 rounded-full"></div>
+              
+              <div className="text-center p-4 bg-gradient-to-r from-orange-50 via-white to-green-50 rounded-2xl border-2 border-orange-200">
+                <p className="text-orange-700 font-semibold text-sm flex items-center justify-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600" aria-hidden="true" />
                   Shipping costs apply - We'll contact you with details
                 </p>
               </div>
+              
               {FORM_FIELDS_CONFIG.map(field => (
                 <div key={field.name}>
                   <label htmlFor={field.name} className="block text-sm font-semibold text-gray-700 mb-2">
-                    {field.icon && <field.icon className="inline h-4 w-4 mr-1 mb-0.5 text-gray-500" aria-hidden="true" />} {field.label} {field.required ? <span className="text-red-500">*</span> : ''}
+                    {field.icon && <field.icon className="inline h-4 w-4 mr-1 mb-0.5 text-orange-500" aria-hidden="true" />} 
+                    {field.label} {field.required ? <span className="text-red-500">*</span> : ''}
                   </label>
+                  
                   {field.type === 'textarea' ? (
                     <textarea
                       name={field.name}
@@ -257,7 +281,7 @@ const SampleRequestPage: React.FC = () => {
                       required={field.required}
                       rows={3}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 resize-none text-sm placeholder-gray-400 bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 resize-none text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-green-300"
                       disabled={isSubmitting}
                       autoComplete={field.autocomplete}
                       aria-required={field.required}
@@ -269,7 +293,7 @@ const SampleRequestPage: React.FC = () => {
                       value={formData[field.name as 'businessType']}
                       onChange={handleInputChange}
                       required={field.required}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white appearance-none"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white appearance-none hover:border-green-300"
                       disabled={isSubmitting}
                       autoComplete={field.autocomplete}
                       aria-required={field.required}
@@ -279,7 +303,7 @@ const SampleRequestPage: React.FC = () => {
                       ))}
                     </select>
                   ) : field.type === 'multiselect' ? (
-                    <fieldset className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus-within:ring-2 focus-within:ring-emerald-500 focus-within:border-emerald-500">
+                    <fieldset className="p-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-orange-500 hover:border-green-300">
                       <legend className="sr-only">{field.label}</legend>
                       <div className="flex flex-wrap gap-2">
                         {field.options?.map(option => (
@@ -288,10 +312,11 @@ const SampleRequestPage: React.FC = () => {
                             key={option.value}
                             onClick={() => handleMultiSelectChange(option.value)}
                             disabled={isSubmitting}
-                            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200 ${formData.strawSizes.includes(option.value)
-                                ? 'bg-emerald-600 text-white border-emerald-600'
-                                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400'
-                              } ${isSubmitting ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
+                            className={`px-3 py-1.5 text-xs font-medium rounded-full border-2 transition-all duration-200 ${
+                              formData.strawSizes.includes(option.value)
+                                ? 'bg-gradient-to-r from-orange-600 to-green-600 text-white border-orange-600 shadow-lg'
+                                : 'bg-white text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-400'
+                            } ${isSubmitting ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
                             aria-pressed={formData.strawSizes.includes(option.value)}
                           >
                             {option.label}
@@ -308,7 +333,7 @@ const SampleRequestPage: React.FC = () => {
                       onChange={handleInputChange}
                       required={field.required}
                       autoComplete={field.autocomplete}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-green-300"
                       placeholder={field.placeholder}
                       disabled={isSubmitting}
                       aria-required={field.required}
@@ -316,15 +341,17 @@ const SampleRequestPage: React.FC = () => {
                   )}
                 </div>
               ))}
+              
               <button
                 type="submit"
                 disabled={!isFormValid || isSubmitting}
-                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting
+                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${
+                  isSubmitting
                     ? 'bg-gray-400 text-gray-700 cursor-wait'
                     : isFormValid
-                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl hover:shadow-emerald-500/25 hover:-translate-y-0.5'
+                      ? 'bg-gradient-to-r from-orange-600 via-orange-500 to-green-600 hover:from-orange-700 hover:to-green-700 text-white shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 hover:-translate-y-0.5 transform'
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  }`}>
+                }`}>
                 {isSubmitting ? (
                   <>
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -336,27 +363,29 @@ const SampleRequestPage: React.FC = () => {
                 ) : (
                   <>
                     <span>Send Sample Request</span>
-                    <CheckCircle className="h-5 w-5" aria-hidden="true" />
+                    <Flag className="h-5 w-5" aria-hidden="true" />
                   </>
                 )}
               </button>
+              
               <div role="status" aria-live="polite">
                 {submissionStatus === 'success' && (
-                  <div className="mt-4 p-3 bg-green-50 text-green-700 border border-green-200 rounded-lg text-sm text-center">
-                    Request sent successfully! We'll contact you on WhatsApp. Your info has been recorded.
+                  <div className="mt-4 p-3 bg-green-50 text-green-700 border-2 border-green-200 rounded-lg text-sm text-center">
+                    🇮🇳 Request sent successfully! We'll contact you on WhatsApp. Your info has been recorded.
                   </div>
                 )}
                 {submissionStatus === 'webhook_error_csv_success' && (
-                  <div className="mt-4 p-3 bg-yellow-50 text-yellow-700 border border-yellow-200 rounded-lg text-sm text-center">
-                    Request sent! We'll contact you. A CSV backup was made.
+                  <div className="mt-4 p-3 bg-yellow-50 text-yellow-700 border-2 border-yellow-200 rounded-lg text-sm text-center">
+                    🇮🇳 Request sent! We'll contact you. A CSV backup was made.
                   </div>
                 )}
                 {submissionStatus === 'error' && (
-                  <div className="mt-4 p-3 bg-red-50 text-red-700 border border-red-200 rounded-lg text-sm text-center">
+                  <div className="mt-4 p-3 bg-red-50 text-red-700 border-2 border-red-200 rounded-lg text-sm text-center">
                     Failed to record request. WhatsApp may have opened. Please try again or send details via WhatsApp if needed.
                   </div>
                 )}
               </div>
+              
               <p className="text-xs text-gray-500 text-center leading-relaxed">
                 We prioritize your privacy. We'll contact you via WhatsApp regarding your sample request. Your details will be recorded for processing. In case of system issues, a CSV copy of your request may be downloaded to your device for backup. Shipping costs apply.
               </p>
@@ -364,9 +393,19 @@ const SampleRequestPage: React.FC = () => {
           </div>
         </section>
       </main>
+      
       <style jsx global>{`
         .balance-text {
           text-wrap: balance;
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.4;
+          }
         }
       `}</style>
     </div>
