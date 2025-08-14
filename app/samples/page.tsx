@@ -242,7 +242,7 @@ const SampleRequestPage: React.FC = () => {
                 <Flag className="h-10 w-10 text-orange-600" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-gray-900 to-green-600 bg-clip-text text-transparent mb-4 balance-text">
-                Request Samples
+                FREEDOM SALE
               </h2>
               <div className="flex items-center justify-center mb-4">
                 <div className="w-8 h-1 bg-orange-500 rounded-full"></div>
@@ -250,7 +250,7 @@ const SampleRequestPage: React.FC = () => {
                 <div className="w-8 h-1 bg-green-600 rounded-full"></div>
               </div>
               <p className="text-gray-600 leading-relaxed balance-text">
-                We'll send you 1 box of RootWave rice straws as a sample. Shipping cost will be applied.
+                buy any 1 box of RootWave rice straws and get one box free. Shipping cost will be applied.
               </p>
             </div>
             
