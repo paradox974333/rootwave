@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, ChangeEvent, FormEvent, useMemo } from 'react';
 import { toast } from "@/hooks/use-toast"; // Ensure this path is correct for your project
-import { Shield, ArrowRight, Mail, CheckCircle, Phone, Gift, Star, Recycle, LucideIcon, Menu, X, Home, Briefcase, MapPin, Package, Flag } from 'lucide-react';
+import { Shield, ArrowRight, Mail, CheckCircle, Phone, Gift, Star, Recycle, LucideIcon, Menu, X, Home, Briefcase, MapPin, Package, Leaf } from 'lucide-react';
 
 // --- CONSTANTS ---
 const TARGET_WHATSAPP_NUMBER = '919244823663';
@@ -225,41 +225,37 @@ const SampleRequestPage: React.FC = () => {
   }, [formData, isFormValid, isSubmitting]);
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans antialiased selection:bg-orange-500 selection:text-white">
-      {/* Independence Day decorative elements */}
-      <div className="fixed top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 via-white to-green-600 z-50"></div>
-      
+    <div className="min-h-screen bg-white text-gray-800 font-sans antialiased selection:bg-green-500 selection:text-white">
       <main>
-        <section className="py-20 md:py-24 bg-gradient-to-br from-orange-50 via-white to-green-50 relative overflow-hidden">
+        <section className="py-20 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 relative overflow-hidden">
           {/* Decorative elements */}
-          <div className="absolute top-10 right-10 w-20 h-20 bg-orange-200 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute bottom-20 left-10 w-16 h-16 bg-green-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute top-10 right-10 w-20 h-20 bg-green-200 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-20 left-10 w-16 h-16 bg-blue-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
           
           <div className="max-w-lg mx-auto px-4 relative">
             <div className="text-center mb-12">
-              {/* Independence Day themed header */}
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-green-100 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Flag className="h-10 w-10 text-orange-600" aria-hidden="true" />
+              <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-blue-100 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Leaf className="h-10 w-10 text-green-600" aria-hidden="true" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-gray-900 to-green-600 bg-clip-text text-transparent mb-4 balance-text">
-                FREEDOM SALE
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-600 via-gray-900 to-blue-600 bg-clip-text text-transparent mb-4 balance-text">
+                Request Samples
               </h2>
               <div className="flex items-center justify-center mb-4">
-                <div className="w-8 h-1 bg-orange-500 rounded-full"></div>
-                <div className="w-8 h-1 bg-white border border-gray-300 rounded-full mx-1"></div>
-                <div className="w-8 h-1 bg-green-600 rounded-full"></div>
+                <div className="w-12 h-1 bg-green-500 rounded-full"></div>
+                <div className="w-6 h-1 bg-gray-300 rounded-full mx-2"></div>
+                <div className="w-12 h-1 bg-blue-500 rounded-full"></div>
               </div>
               <p className="text-gray-600 leading-relaxed balance-text">
-                buy any 1 box of RootWave rice straws and get one box free. Shipping cost will be applied.
+                Try our premium biodegradable rice straws. Request samples for your business today. Shipping costs apply.
               </p>
             </div>
             
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-xl border-2 border-gray-100 space-y-6 relative">
-              {/* Tricolor accent border */}
-              <div className="absolute -top-1 left-4 right-4 h-1 bg-gradient-to-r from-orange-500 via-white to-green-600 rounded-full"></div>
+              {/* Accent border */}
+              <div className="absolute -top-1 left-4 right-4 h-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-full"></div>
               
-              <div className="text-center p-4 bg-gradient-to-r from-orange-50 via-white to-green-50 rounded-2xl border-2 border-orange-200">
-                <p className="text-orange-700 font-semibold text-sm flex items-center justify-center gap-2">
+              <div className="text-center p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl border-2 border-green-200">
+                <p className="text-green-700 font-semibold text-sm flex items-center justify-center gap-2">
                   <CheckCircle className="h-4 w-4 text-green-600" aria-hidden="true" />
                   Shipping costs apply - We'll contact you with details
                 </p>
@@ -268,7 +264,7 @@ const SampleRequestPage: React.FC = () => {
               {FORM_FIELDS_CONFIG.map(field => (
                 <div key={field.name}>
                   <label htmlFor={field.name} className="block text-sm font-semibold text-gray-700 mb-2">
-                    {field.icon && <field.icon className="inline h-4 w-4 mr-1 mb-0.5 text-orange-500" aria-hidden="true" />} 
+                    {field.icon && <field.icon className="inline h-4 w-4 mr-1 mb-0.5 text-green-500" aria-hidden="true" />} 
                     {field.label} {field.required ? <span className="text-red-500">*</span> : ''}
                   </label>
                   
@@ -281,7 +277,7 @@ const SampleRequestPage: React.FC = () => {
                       required={field.required}
                       rows={3}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 resize-none text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-green-300"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 resize-none text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-blue-300"
                       disabled={isSubmitting}
                       autoComplete={field.autocomplete}
                       aria-required={field.required}
@@ -293,7 +289,7 @@ const SampleRequestPage: React.FC = () => {
                       value={formData[field.name as 'businessType']}
                       onChange={handleInputChange}
                       required={field.required}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white appearance-none hover:border-green-300"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white appearance-none hover:border-blue-300"
                       disabled={isSubmitting}
                       autoComplete={field.autocomplete}
                       aria-required={field.required}
@@ -303,7 +299,7 @@ const SampleRequestPage: React.FC = () => {
                       ))}
                     </select>
                   ) : field.type === 'multiselect' ? (
-                    <fieldset className="p-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-orange-500 hover:border-green-300">
+                    <fieldset className="p-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus-within:ring-2 focus-within:ring-green-500 focus-within:border-green-500 hover:border-blue-300">
                       <legend className="sr-only">{field.label}</legend>
                       <div className="flex flex-wrap gap-2">
                         {field.options?.map(option => (
@@ -314,8 +310,8 @@ const SampleRequestPage: React.FC = () => {
                             disabled={isSubmitting}
                             className={`px-3 py-1.5 text-xs font-medium rounded-full border-2 transition-all duration-200 ${
                               formData.strawSizes.includes(option.value)
-                                ? 'bg-gradient-to-r from-orange-600 to-green-600 text-white border-orange-600 shadow-lg'
-                                : 'bg-white text-gray-700 border-gray-300 hover:bg-orange-50 hover:border-orange-400'
+                                ? 'bg-gradient-to-r from-green-600 to-blue-600 text-white border-green-600 shadow-lg'
+                                : 'bg-white text-gray-700 border-gray-300 hover:bg-green-50 hover:border-green-400'
                             } ${isSubmitting ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
                             aria-pressed={formData.strawSizes.includes(option.value)}
                           >
@@ -333,7 +329,7 @@ const SampleRequestPage: React.FC = () => {
                       onChange={handleInputChange}
                       required={field.required}
                       autoComplete={field.autocomplete}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-green-300"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 text-sm placeholder-gray-400 bg-gray-50 focus:bg-white hover:border-blue-300"
                       placeholder={field.placeholder}
                       disabled={isSubmitting}
                       aria-required={field.required}
@@ -349,7 +345,7 @@ const SampleRequestPage: React.FC = () => {
                   isSubmitting
                     ? 'bg-gray-400 text-gray-700 cursor-wait'
                     : isFormValid
-                      ? 'bg-gradient-to-r from-orange-600 via-orange-500 to-green-600 hover:from-orange-700 hover:to-green-700 text-white shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 hover:-translate-y-0.5 transform'
+                      ? 'bg-gradient-to-r from-green-600 via-green-500 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white shadow-xl hover:shadow-2xl hover:shadow-green-500/25 hover:-translate-y-0.5 transform'
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}>
                 {isSubmitting ? (
@@ -363,7 +359,7 @@ const SampleRequestPage: React.FC = () => {
                 ) : (
                   <>
                     <span>Send Sample Request</span>
-                    <Flag className="h-5 w-5" aria-hidden="true" />
+                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </>
                 )}
               </button>
@@ -371,12 +367,12 @@ const SampleRequestPage: React.FC = () => {
               <div role="status" aria-live="polite">
                 {submissionStatus === 'success' && (
                   <div className="mt-4 p-3 bg-green-50 text-green-700 border-2 border-green-200 rounded-lg text-sm text-center">
-                    🇮🇳 Request sent successfully! We'll contact you on WhatsApp. Your info has been recorded.
+                    ✅ Request sent successfully! We'll contact you on WhatsApp. Your info has been recorded.
                   </div>
                 )}
                 {submissionStatus === 'webhook_error_csv_success' && (
                   <div className="mt-4 p-3 bg-yellow-50 text-yellow-700 border-2 border-yellow-200 rounded-lg text-sm text-center">
-                    🇮🇳 Request sent! We'll contact you. A CSV backup was made.
+                    ✅ Request sent! We'll contact you. A CSV backup was made.
                   </div>
                 )}
                 {submissionStatus === 'error' && (
