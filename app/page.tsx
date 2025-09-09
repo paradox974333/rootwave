@@ -32,7 +32,7 @@ import {
   ArrowRight,
   User,
 } from "lucide-react"
-import Image from "next/image" // Renamed to NextImage to avoid conflict with HTMLImageElement if any ambiguity
+import Image from "next/image"
 
 export default function HomePage() {
   const features = [
@@ -88,7 +88,7 @@ export default function HomePage() {
     price: 1,
     description: "Precision-engineered for optimal flow dynamics in thin liquids.",
     bestFor: "Fine beverages, artisanal teas, craft cocktails",
-    image: "/DSC03027.JPG?height=200&width=300", // Assuming ProductCard handles responsive images
+    image: "/DSC03027.JPG?height=200&width=300",
     images: [
       "/DSC03027.JPG?height=200&width=300",
       "/DSC03080.JPG?height=200&width=300", 
@@ -255,6 +255,153 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 overflow-x-hidden">
       <Header />
+
+      {/* Hero Section - Sip Sustainable */}
+      <section id="home" className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Sophisticated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-50/30 via-transparent to-blue-50/30"></div>
+          <div className="absolute top-20 left-10 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-gradient-to-r from-emerald-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 sm:w-56 sm:h-56 md:w-80 md:h-80 bg-gradient-to-r from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-green-100/10 to-blue-100/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            <div className="space-y-6 md:space-y-8">
+              {/* Luxury Badge */}
+              <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full border border-emerald-200/50 backdrop-blur-sm shadow-lg">
+                <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mr-2 sm:mr-3" />
+                <span className="text-xs sm:text-sm font-semibold text-emerald-800 tracking-wide">COLLECTION</span>
+                <Gem className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 ml-2 sm:ml-3" />
+              </div>
+
+              {/* Hero Title */}
+              <div className="space-y-2 md:space-y-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-green-600 to-blue-600">
+                    Sustainably
+                  </span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600">
+                    in every sip
+                  </span>
+                </h1>
+              </div>
+
+              {/* Luxury Description */}
+              <div className="space-y-3 md:space-y-4">
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium">
+                  Elevate your business with our
+                  <span className="font-bold text-emerald-600"> eco-luxury</span> rice straws.
+                </p>
+                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                  Trusted by <span className="font-semibold">500+ establishments</span> worldwide for uncompromising
+                  quality and sustainability.
+                </p>
+              </div>
+
+              {/* Luxury Stats Grid */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
+                {stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className={`group relative p-3 sm:p-4 md:p-6 ${stat.bg} ${stat.border} border-2 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 backdrop-blur-sm`}
+                  >
+                    <div className="text-center space-y-2 sm:space-y-3">
+                      <div
+                        className={`${stat.color} flex justify-center group-hover:scale-110 transition-transform duration-300`}
+                      >
+                        {stat.icon}
+                      </div>
+                      <div className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900">{stat.number}</div>
+                      <div className="text-xs sm:text-sm font-semibold text-gray-700 tracking-wide text-center">{stat.label}</div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Signature Quote */}
+              <div className="relative p-4 sm:p-6 md:p-8 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl sm:rounded-2xl border border-emerald-200/50 shadow-xl backdrop-blur-sm">
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" />
+                </div>
+                <blockquote className="text-sm sm:text-base md:text-lg text-emerald-800 italic font-medium leading-relaxed pl-6 sm:pl-8">
+                  "From agricultural waste to luxury experience – rice straws are redefining sustainability, one elegant
+                  sip at a time."
+                </blockquote>
+              </div>
+
+              {/* Shop Now Button */}
+              <div className="flex justify-center">
+                <Button
+                  size="lg"
+                  className="group relative px-8 py-4 md:px-12 md:py-6 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-lg md:text-xl font-bold shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-xl sm:rounded-2xl"
+                  onClick={handleScrollToProducts}
+                >
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <ShoppingCart className="w-6 h-6 sm:w-7 sm:h-7 group-hover:rotate-12 transition-transform duration-300" />
+                    <span>Shop Now</span>
+                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </Button>
+              </div>
+
+              {/* Value Proposition */}
+              <div className="p-4 md:p-6 bg-gradient-to-r from-gray-900 to-emerald-900 rounded-xl sm:rounded-2xl shadow-2xl">
+                <p className="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400 text-center">
+                  Affordable luxury for the planet, priceless impact for tomorrow.
+                </p>
+              </div>
+            </div>
+
+            {/* Hero Image */}
+            <div className="relative mt-8 lg:mt-0">
+              <div className="relative z-10 group">
+                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:scale-105">
+                  <Image
+                    src="/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg?height=600&width=700"
+                    alt="Eco-friendly rice straws"
+                    width={700}
+                    height={600}
+                    className="w-full h-auto object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 p-3 sm:p-4 md:p-6 bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 animate-float">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs sm:text-sm font-bold text-gray-900">Eco-Certified</p>
+                      <p className="text-[10px] sm:text-xs text-gray-600">Standard</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 p-3 sm:p-4 md:p-6 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-xl sm:rounded-2xl shadow-2xl animate-float-delayed">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <div className="p-2 sm:p-3 bg-white/20 rounded-lg sm:rounded-xl backdrop-blur-sm">
+                      <Leaf className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm sm:text-base md:text-lg">100% Biodegradable</p>
+                      <p className="text-xs sm:text-sm opacity-90">Decomposes in 90 days</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-200/30 to-blue-200/30 rounded-2xl sm:rounded-3xl blur-3xl scale-110 -z-10"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Product Catalog */}
       <section id="products" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-slate-100">
@@ -774,7 +921,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="relative bg-gradient-to-br from-gray-900 via-emerald-900 to-blue-900 text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background Elements (visual, should not affect layout much) */}
+        {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
@@ -795,20 +942,17 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* MODIFIED QUICK ACCESS SECTION */}
             <div className="space-y-4 md:space-y-6">
               <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Quick Access</h4>
               <ul className="space-y-3 sm:space-y-4 text-emerald-200">
                 {[
                   { name: "Home", type: "scroll" },
-                  { name: "About", type: "scroll" },
                   { name: "Products", type: "scroll" },
                   { name: "Contact", type: "scroll" },
                   { name: "Blogs", href: "/blogs", type: "page" },
                 ].map((item) => (
                   <li key={item.name}>
                     {item.type === "page" ? (
-                      // Link for page navigation
                       <a
                         href={item.href}
                         className="hover:text-white cursor-pointer transition-colors font-semibold text-sm sm:text-base md:text-lg group"
@@ -818,7 +962,6 @@ export default function HomePage() {
                         </span>
                       </a>
                     ) : (
-                      // Button for scrolling on the same page
                       <button
                         onClick={() => {
                           try {
@@ -838,8 +981,6 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
-            {/* END OF MODIFIED QUICK ACCESS SECTION */}
-
 
             <div className="space-y-4 md:space-y-6">
               <h4 className="font-black text-lg sm:text-xl md:text-2xl text-white">Signature Collection</h4>
