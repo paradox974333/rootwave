@@ -19,7 +19,6 @@ export function Header() {
   // Define navigation items with types for handling
   const navigation = [
     { name: "Home", href: "/", type: "pageOrScrollToHome" },
-    { name: "About", href: "/#about", type: "scroll" },
     { name: "Products", href: "/#products", type: "scroll" },
     { name: "Blogs", href: "/blogs", type: "page" },
      { name: "Why Rice Straws?", href: "/#comparison", type: "scroll" },
