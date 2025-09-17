@@ -70,7 +70,7 @@ export default function WhereToByRiceStrawsPostContent() {
         Where to Buy Rice Straws in Bulk?
       </h2>
       <p className="mb-6 text-lg leading-relaxed">
-        When searching for bulk rice straw suppliers, you should consider three factors: quality, pricing, and reliability. Let's explore the options.
+        When searching for bulk <a href="https://shop.rootwave.org/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline">rice straw</a> suppliers, you should consider three factors: quality, pricing, and reliability. Let's explore the options.
       </p>
 
       <h3 className="text-xl font-semibold mb-3 mt-6">1. Local Wholesale Distributors</h3>
@@ -176,7 +176,7 @@ export default function WhereToByRiceStrawsPostContent() {
         If you're asking "Where can I buy rice straws in bulk for my café?", the answer is simple: look for trusted, premium suppliers that can guarantee quality, eco-friendliness, and consistent supply.
       </p>
       <p className="mb-6 text-lg leading-relaxed">
-        Among the many options available, RootWave stands out as a premium supplier of high-quality rice straws. By choosing RootWave, your café not only reduces plastic waste but also offers a better customer experience and builds a sustainable brand identity.
+        Among the many options available, <a href="https://shop.rootwave.org/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline">RootWave</a> stands out as a premium supplier of high-quality rice straws. By choosing RootWave, your café not only reduces plastic waste but also offers a better customer experience and builds a sustainable brand identity.
       </p>
       
       <blockquote className="my-8 p-6 bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 italic rounded-r-lg">
