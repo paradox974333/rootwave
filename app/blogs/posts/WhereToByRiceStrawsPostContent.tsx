@@ -1,6 +1,6 @@
-// Metadata for this specific post (keep this for your internal use)
+// Single metadata object for this specific post
 export const meta = {
-  title: "Where to Buy Rice Straws in Bulk for Cafés",
+  title: "Where to Buy Rice Straws in Bulk for Cafés | Premium RootWave Straws",
   date: "2024-03-15",
   author: "Jane Doe, Sustainability Expert",
   readTimeMinutes: 8,
@@ -8,13 +8,6 @@ export const meta = {
   tags: ["Rice Straws", "Bulk Purchase", "Café Supplies", "Eco-Friendly Business", "Sustainable Products"],
   description: "Looking for eco-friendly straws for your café? Discover why rice straws are a premium alternative to plastic and paper. Buy durable, biodegradable rice straws in bulk from RootWave—your trusted supplier for sustainable café solutions.",
   keywords: "bulk rice straws, café supplies, eco-friendly straws, sustainable business, RootWave straws, biodegradable straws",
-};
-
-// Next.js App Router metadata (this will override the layout title)
-export const metadata = {
-  title: "Where to Buy Rice Straws in Bulk for Cafés | Premium RootWave Straws",
-  description: "Looking for eco-friendly straws for your café? Discover why rice straws are a premium alternative to plastic and paper. Buy durable, biodegradable rice straws in bulk from RootWave—your trusted supplier for sustainable café solutions.",
-  keywords: "bulk rice straws, café supplies, eco-friendly straws, sustainable business, RootWave straws, biodegradable straws"
 };
 
 // The actual blog post content as a Server Component
