@@ -22,11 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* REMOVED THE STATIC TITLE - Let individual pages handle titles */}
-        <meta
-          name="description"
-          content="Leading bulk supplier of eco-friendly rice straws for restaurants, cafes, hotels. Minimum order 10,000 straws. Biodegradable, edible, sustainable alternative to plastic straws."
-        />
+        {/* REMOVED BOTH TITLE AND DESCRIPTION - Let individual pages handle all meta tags */}
         <meta
           name="keywords"
           content="bulk rice straws, eco-friendly straws, biodegradable straws, sustainable straws, plastic alternative, B2B straws, restaurant supplies, cafe supplies, hotel supplies, wholesale straws"
