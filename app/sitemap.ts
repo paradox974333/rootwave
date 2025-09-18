@@ -1,50 +1,44 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://shop.rootwave.org' // Replace with your actual domain
+  const baseUrl = 'https://shop.rootwave.org'
   
   return [
     {
-      url: baseUrl,
+      url: baseUrl + '/',
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/#products`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#customization`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#comparison`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/#checkout`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 1.00,
     },
     {
       url: `${baseUrl}/blogs`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.80,
+    },
+    {
+      url: `${baseUrl}/blogs/WhereToByRiceStrawsPostContent`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/blogs/Learning-from-Local-Heroes`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/blogs/why-rice-straws`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/blogs/our-journey`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.64,
     },
   ]
 }
