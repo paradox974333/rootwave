@@ -6,7 +6,7 @@ export const meta = {
   date: "2024-03-15",
   author: "Jane Doe, Sustainability Expert",
   readTimeMinutes: 8,
-  image: "/blog-images/DSC03089.JPG", // Path from /public
+  image: "/blog-images/DSC03043.JPG", // Path from /public
   tags: ["Rice Straws", "Bulk Purchase", "Café Supplies", "Eco-Friendly Business", "Sustainable Products"],
   description: "Looking for eco-friendly straws for your café? Discover why rice straws are a premium alternative to plastic and paper. Buy durable, biodegradable rice straws in bulk from RootWave—your trusted supplier for sustainable café solutions.",
   keywords: "bulk rice straws, café supplies, eco-friendly straws, sustainable business, RootWave straws, biodegradable straws",
