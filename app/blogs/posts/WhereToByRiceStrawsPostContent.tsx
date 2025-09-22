@@ -1,8 +1,8 @@
 // Single metadata object for this specific post
 export const meta = {
   title: "Where to Buy Rice Straws in Bulk for Cafés | Premium RootWave Straws",
-  date: "2024-03-15",
-  author: "Jane Doe, Sustainability Expert",
+  date: "2025-09-22",
+  author: "prateek (cmo), Sustainability Expert",
   readTimeMinutes: 8,
   image: "/blog-images/DSC03043.JPG", // Path from /public
   tags: ["Rice Straws", "Bulk Purchase", "Café Supplies", "Eco-Friendly Business", "Sustainable Products"],

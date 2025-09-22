@@ -1,8 +1,8 @@
 // Single metadata object for this specific post
 export const meta = {
   title: "Order Premium Rice Straw Online | Eco-Friendly Straws",
-  date: "2024-03-15",
-  author: "Jane Doe, Sustainability Expert",
+  date: "2025-09-21",
+  author: "prateek (cmo), Sustainability Expert",
   readTimeMinutes: 8,
   image: "/blog-images/istockphoto-154957029-612x612.jpg", // Path from /public
   tags: ["Rice Straws", "Online Order", "Eco-Friendly Straws", "Sustainable Products", "RootWave"],
