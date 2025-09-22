@@ -57,8 +57,8 @@ export default function RootLayout({
             <meta property="og:title" content="Rootwave - Premium Eco-Friendly Rice Straws | Bulk Wholesale" />
             <meta property="og:description" content="Transform your business with premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable. Trusted by 500+ establishments worldwide." />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://rootwave.org" />
-            <meta property="og:image" content="https://rootwave.org/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
+            <meta property="og:url" content="https://shop.rootwave.org" />
+            <meta property="og:image" content="https://shop.rootwave.org/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
             <meta property="og:site_name" content="Rootwave" />
             <meta property="og:locale" content="en_IN" />
           </>
@@ -70,7 +70,7 @@ export default function RootLayout({
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content="Rootwave - Premium Eco-Friendly Rice Straws" />
             <meta name="twitter:description" content="Transform your business with premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable." />
-            <meta name="twitter:image" content="https://rootwave.org/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
+            <meta name="twitter:image" content="https://shop.rootwave.org/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
           </>
         )}
 
@@ -84,8 +84,8 @@ export default function RootLayout({
                 "@type": "Organization",
                 "name": "Rootwave",
                 "description": "Premium eco-friendly rice straws manufacturer and wholesale supplier",
-                "url": "https://rootwave.org",
-                "logo": "https://rootwave.org/logo icon -svg-01.png",
+                "url": "https://shop.rootwave.org",
+                "logo": "https://shop.rootwave.org/logo icon -svg-01.png",
                 "foundingDate": "2023",
                 "contactPoint": {
                   "@type": "ContactPoint",
@@ -149,7 +149,7 @@ export default function RootLayout({
         )}
 
         {/* Other essential head tags */}
-        <link rel="canonical" href="https://rootwave.org" />
+        <link rel="canonical" href="https://shop.rootwave.org" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo icon -svg-01.png" />
         <meta name="theme-color" content="#16a34a" />
