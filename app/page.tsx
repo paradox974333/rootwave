@@ -89,11 +89,11 @@ export default function HomePage() {
       price: 1,
       description: "Precision-engineered for optimal flow dynamics in thin liquids.",
       bestFor: "Fine beverages, artisanal teas, craft cocktails",
-      image: "/DSC03027.JPG",
+      image: "/DSC03027.JPG?height=200&width=300",
       images: [
-        "/DSC03027.JPG",
-        "/DSC03080.JPG",
-        "/6.png"
+        "/DSC03027.JPG?height=200&width=300",
+        "/DSC03080.JPG?height=200&width=300",
+        "/6.png?height=250&width=350"
       ]
     },
     {
@@ -103,11 +103,11 @@ export default function HomePage() {
       price: 1,
       description: "Perfectly balanced for medium-viscosity beverages.",
       bestFor: "Gourmet smoothies, luxury milkshakes, specialty drinks",
-      image: "/DSC02990.JPG",
+      image: "/placeholder.svg?height=200&width=300",
       images: [
-        "/DSC02990.JPG",
-        "/DSC02991.JPG",
-        "/8.png"
+        "/DSC02990.JPG?height=200&width=300",
+        "/DSC02991.JPG?height=200&width=300",
+        "/8.png?height=300&width=500"
       ]
     },
     {
@@ -117,11 +117,11 @@ export default function HomePage() {
       price: 1,
       description: "Enhanced diameter for luxurious drinking experience.",
       bestFor: "Thick shakes, artisanal smoothies, craft beverages",
-      image: "/DSC03089.JPG",
+      image: "/placeholder.svg?height=200&width=300",
       images: [
-        "/DSC03089.JPG",
-        "/DSC03093.JPG",
-        "/10.png"
+        "/DSC03089.JPG?height=200&width=300",
+        "/DSC03093.JPG?height=200&width=300",
+        "/10.png?height=200&width=300"
       ]
     },
     {
@@ -131,11 +131,11 @@ export default function HomePage() {
       price: 1,
       description: "Ultra-wide design for specialty applications.",
       bestFor: "Luxury bubble tea, gourmet slushies, signature drinks",
-      image: "/DSC03046.JPG",
+      image: "/placeholder.svg?height=200&width=300",
       images: [
-        "/DSC03046.JPG",
-        "/DSC03002.JPG",
-        "/13.png"
+        "/DSC03046.JPG?height=200&width=300",
+        "/DSC03002.JPG?height=200&width=300",
+        "/13.png?height=200&width=300"
       ]
     },
   ]
@@ -253,18 +253,64 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Rootwave - Premium Eco-Luxury Rice Straws | Sustainable Straws for Business</title>
+        <title>Rootwave - Premium Eco-Friendly Rice Straws | Sustainable Luxury for Restaurants & Cafes</title>
         <meta 
           name="description" 
-          content="Transform your establishment with Rootwave's premium eco-luxury rice straws. 100% biodegradable, edible, and trusted by 500+ businesses worldwide. Minimum order 1000 straws." 
+          content="Transform your business with Rootwave's premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable. Trusted by 500+ establishments worldwide. Minimum order 1000 straws." 
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Rootwave - Premium Eco-Luxury Rice Straws" />
-        <meta property="og:description" content="Sustainable rice straws for discerning establishments. 100% biodegradable and eco-certified." />
+        <meta name="keywords" content="eco-friendly straws, rice straws, biodegradable straws, sustainable restaurant supplies, edible straws, zero waste straws, premium straws, bulk straws" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Rootwave - Premium Eco-Friendly Rice Straws" />
+        <meta property="og:description" content="Transform your business with premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://rootwave.org" />
+        <meta property="og:url" content="https://rootwave.org" />
+        <meta property="og:image" content="/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Rootwave - Premium Eco-Friendly Rice Straws" />
+        <meta name="twitter:description" content="Transform your business with premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable." />
+        <meta name="twitter:image" content="/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg" />
+        
+        {/* Additional Meta Tags */}
+        <meta name="author" content="Rootwave" />
+        <meta name="language" content="English" />
+        <meta name="geo.region" content="IN" />
+        <meta name="geo.country" content="India" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/logo icon -svg-01.png" />
+        <link rel="apple-touch-icon" href="/logo icon -svg-01.png" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Rootwave",
+            "description": "Premium eco-friendly rice straws manufacturer",
+            "url": "https://rootwave.org",
+            "logo": "https://rootwave.org/logo icon -svg-01.png",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-77600-21026",
+              "contactType": "Customer Service",
+              "email": "info@rootwave.org"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN"
+            },
+            "sameAs": [
+              "https://wa.me/917760021026"
+            ]
+          })}
+        </script>
       </Head>
+
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 overflow-x-hidden">
         <Header />
 
@@ -283,9 +329,9 @@ export default function HomePage() {
               <div className="space-y-8">
                 {/* Badge */}
                 <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full border border-emerald-200/50 backdrop-blur-sm shadow-lg">
-                  <Crown className="w-5 h-5 text-emerald-600 mr-3" aria-hidden="true" />
+                  <Crown className="w-5 h-5 text-emerald-600 mr-3" />
                   <span className="text-sm font-semibold text-emerald-800 tracking-wide">PREMIUM COLLECTION</span>
-                  <Gem className="w-5 h-5 text-blue-600 ml-3" aria-hidden="true" />
+                  <Gem className="w-5 h-5 text-blue-600 ml-3" />
                 </div>
 
                 {/* Main Heading */}
@@ -320,7 +366,7 @@ export default function HomePage() {
                       className={`group relative p-6 ${stat.bg} ${stat.border} border-2 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 backdrop-blur-sm`}
                     >
                       <div className="text-center space-y-3">
-                        <div className={`${stat.color} flex justify-center group-hover:scale-110 transition-transform duration-300`} aria-hidden="true">
+                        <div className={`${stat.color} flex justify-center group-hover:scale-110 transition-transform duration-300`}>
                           {stat.icon}
                         </div>
                         <div className="text-3xl font-black text-gray-900">{stat.number}</div>
@@ -332,7 +378,7 @@ export default function HomePage() {
 
                 {/* Quote */}
                 <div className="relative p-8 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-2xl border border-emerald-200/50 shadow-xl">
-                  <Sparkles className="absolute top-4 left-4 w-6 h-6 text-emerald-600" aria-hidden="true" />
+                  <Sparkles className="absolute top-4 left-4 w-6 h-6 text-emerald-600" />
                   <blockquote className="text-lg text-emerald-800 italic font-medium leading-relaxed pl-8">
                     "From agricultural waste to luxury experience – rice straws are redefining sustainability, one elegant
                     sip at a time."
@@ -345,12 +391,12 @@ export default function HomePage() {
                     size="lg"
                     className="group relative px-12 py-6 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-xl font-bold shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-2xl"
                     onClick={() => handleScrollToSection("products")}
-                    aria-label="Shop premium eco-luxury rice straws now"
+                    aria-label="Shop premium eco-friendly rice straws"
                   >
                     <div className="flex items-center space-x-4">
-                      <ShoppingCart className="w-7 h-7 group-hover:rotate-12 transition-transform duration-300" aria-hidden="true" />
+                      <ShoppingCart className="w-7 h-7 group-hover:rotate-12 transition-transform duration-300" />
                       <span>Shop Now</span>
-                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
+                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </Button>
                 </div>
@@ -362,12 +408,11 @@ export default function HomePage() {
                   <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:scale-105">
                     <Image
                       src="/Leonardo_Phoenix_10_In_a_visually_striking_commercial_ad_shoot_0.jpg"
-                      alt="Premium eco-friendly rice straws displayed in elegant commercial setting"
+                      alt="Premium eco-friendly rice straws by Rootwave - sustainable luxury dining"
                       width={700}
                       height={600}
                       className="w-full h-auto object-cover"
                       priority
-                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                   </div>
@@ -390,7 +435,7 @@ export default function HomePage() {
                   <div className="absolute -bottom-6 -left-6 p-6 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-2xl shadow-2xl animate-pulse">
                     <div className="flex items-center space-x-4">
                       <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                        <Leaf className="w-8 h-8" aria-hidden="true" />
+                        <Leaf className="w-8 h-8" />
                       </div>
                       <div>
                         <p className="font-bold text-lg">100% Biodegradable</p>
@@ -410,7 +455,7 @@ export default function HomePage() {
             {/* Section Header */}
             <div className="text-center mb-20">
               <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full border border-purple-200/50 mb-8">
-                <Crown className="w-5 h-5 text-purple-600 mr-3" aria-hidden="true" />
+                <Crown className="w-5 h-5 text-purple-600 mr-3" />
                 <span className="text-sm font-bold text-purple-800 tracking-wider">SIGNATURE COLLECTION</span>
               </div>
 
@@ -458,7 +503,7 @@ export default function HomePage() {
                   className="group p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-gray-100"
                 >
                   <div className="text-center space-y-3">
-                    <div className="text-3xl" role="img" aria-hidden="true">{benefit.icon}</div>
+                    <div className="text-3xl" role="img" aria-label={benefit.text}>{benefit.icon}</div>
                     <p className="text-sm font-semibold text-gray-700 leading-relaxed">{benefit.text}</p>
                   </div>
                 </div>
@@ -468,7 +513,7 @@ export default function HomePage() {
             {/* Pricing Tiers */}
             <div className="relative p-12 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-200">
               <div className="absolute top-6 right-6">
-                <Gem className="w-8 h-8 text-purple-600" aria-hidden="true" />
+                <Gem className="w-8 h-8 text-purple-600" />
               </div>
 
               <h3 className="text-4xl font-black text-center mb-12 text-gray-900">💎 Luxury Pricing Tiers</h3>
@@ -482,10 +527,14 @@ export default function HomePage() {
                 ].map((tier, index) => (
                   <Card
                     key={index}
-                    className={`group relative border-2 hover:shadow-2xl transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden bg-gradient-to-br from-${tier.color}-50 to-${tier.color}-100 border-${tier.color}-200`}
+                    className="group relative border-2 hover:shadow-2xl transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden"
+                    style={{
+                      borderColor: `var(--${tier.color}-200)`,
+                      background: `linear-gradient(to bottom right, var(--${tier.color}-50), var(--${tier.color}-100))`,
+                    }}
                   >
                     <CardContent className="p-6 text-center space-y-4">
-                      <div className="text-4xl" role="img" aria-hidden="true">{tier.icon}</div>
+                      <div className="text-4xl" role="img" aria-label={tier.name}>{tier.icon}</div>
                       <h4 className="font-black text-2xl">{tier.name}</h4>
                       <p className="text-4xl font-black">{tier.range}</p>
                       <p className="text-sm font-bold">{tier.discount}</p>
@@ -503,7 +552,7 @@ export default function HomePage() {
             {/* Section Header */}
             <div className="text-center mb-20">
               <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-full border border-pink-200/50 mb-8">
-                <Sparkles className="w-5 h-5 text-pink-600 mr-3" aria-hidden="true" />
+                <Sparkles className="w-5 h-5 text-pink-600 mr-3" />
                 <span className="text-sm font-bold text-pink-800 tracking-wider">CUSTOMIZATION</span>
               </div>
 
@@ -533,7 +582,7 @@ export default function HomePage() {
                       <div
                         className={`relative w-24 h-24 rounded-full mx-auto ${color.color} ${color.shadow} shadow-2xl group-hover:scale-110 transition-transform duration-300`}
                         role="img"
-                        aria-label={`${color.name} color sample`}
+                        aria-label={color.name}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full" />
                       </div>
@@ -569,7 +618,6 @@ export default function HomePage() {
                           alt="Luxury custom branded pouches for eco-friendly rice straws"
                           fill
                           className="object-cover shadow-xl hover:shadow-2xl transition-all duration-700 group-hover:scale-105"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                       </div>
                     </div>
@@ -583,7 +631,7 @@ export default function HomePage() {
                       <div className="space-y-6">
                         <div>
                           <h4 className="font-black mb-4 text-xl text-gray-900 flex items-center">
-                            <Crown className="w-5 h-5 text-amber-600 mr-3" aria-hidden="true" />
+                            <Crown className="w-5 h-5 text-amber-600 mr-3" />
                             Features
                           </h4>
                           <ul className="space-y-3">
@@ -603,7 +651,7 @@ export default function HomePage() {
 
                         <div>
                           <h4 className="font-black mb-4 text-xl text-gray-900 flex items-center">
-                            <Gem className="w-5 h-5 text-purple-600 mr-3" aria-hidden="true" />
+                            <Gem className="w-5 h-5 text-purple-600 mr-3" />
                             Investment Details
                           </h4>
                           <div className="space-y-3">
@@ -626,12 +674,12 @@ export default function HomePage() {
                         <Button
                           className="group w-full py-4 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-base font-bold shadow-xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-xl"
                           onClick={() => handleScrollToSection("contact")}
-                          aria-label="Inquire about custom branding options for rice straws"
+                          aria-label="Inquire about custom branding options"
                         >
                           <div className="flex items-center justify-center space-x-2">
-                            <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" aria-hidden="true" />
+                            <MessageCircle className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                             <span>Inquire About Custom Branding</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                           </div>
                         </Button>
                       </div>
@@ -648,7 +696,7 @@ export default function HomePage() {
           <div className="container mx-auto">
             <div className="text-center mb-16">
               <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-50 to-emerald-50 rounded-full border border-red-200/50 mb-6">
-                <Recycle className="w-5 h-5 text-red-600 mr-3" aria-hidden="true" />
+                <Recycle className="w-5 h-5 text-red-600 mr-3" />
                 <span className="text-sm font-bold text-red-800 tracking-wider">ENVIRONMENTAL IMPACT</span>
               </div>
 
@@ -665,13 +713,13 @@ export default function HomePage() {
             <div className="mb-16">
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[700px]" role="table" aria-label="Comparison of straw types">
+                  <table className="w-full min-w-[700px]">
                     <thead className="bg-gradient-to-r from-emerald-600 via-green-600 to-blue-600 text-white">
                       <tr>
-                        <th className="p-5 text-left font-black text-base" scope="col">Comparison Factor</th>
-                        <th className="p-5 text-left font-black text-base" scope="col">Plastic</th>
-                        <th className="p-5 text-left font-black text-base" scope="col">Paper</th>
-                        <th className="p-5 text-left font-black text-base" scope="col">Rice Straws</th>
+                        <th className="p-5 text-left font-black text-base">Comparison Factor</th>
+                        <th className="p-5 text-left font-black text-base">Plastic</th>
+                        <th className="p-5 text-left font-black text-base">Paper</th>
+                        <th className="p-5 text-left font-black text-base">Rice Straws</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -728,7 +776,7 @@ export default function HomePage() {
                             index % 2 === 0 ? "bg-white" : "bg-gray-50/70"
                           }`}
                         >
-                          <td className="p-5 font-bold text-gray-900 text-sm" scope="row">{row.factor}</td>
+                          <td className="p-5 font-bold text-gray-900 text-sm">{row.factor}</td>
                           <td className={`p-5 font-semibold ${row.plasticColor} text-sm`}>{row.plastic}</td>
                           <td className={`p-5 font-semibold ${row.paperColor} text-sm`}>{row.paper}</td>
                           <td className={`p-5 font-semibold ${row.riceColor} text-sm`}>{row.rice}</td>
@@ -745,7 +793,7 @@ export default function HomePage() {
               <div className="relative p-8 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl border-l-6 border-red-500 shadow-lg">
                 <div className="absolute top-4 right-4">
                   <div className="w-7 h-7 bg-red-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-base" aria-hidden="true">!</span>
+                    <span className="text-white font-bold text-base">!</span>
                   </div>
                 </div>
                 <blockquote className="text-base text-red-800 italic font-bold leading-relaxed pr-8">
@@ -757,7 +805,7 @@ export default function HomePage() {
               <div className="relative p-8 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border-l-6 border-orange-500 shadow-lg">
                 <div className="absolute top-4 right-4">
                   <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-base" aria-hidden="true">?</span>
+                    <span className="text-white font-bold text-base">?</span>
                   </div>
                 </div>
                 <blockquote className="text-base text-orange-800 italic font-bold leading-relaxed pr-8">
@@ -773,7 +821,7 @@ export default function HomePage() {
           <div className="container mx-auto">
             <div className="text-center mb-20">
               <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full border border-blue-200/50 mb-8">
-                <ShoppingCart className="w-5 h-5 text-blue-600 mr-3" aria-hidden="true" />
+                <ShoppingCart className="w-5 h-5 text-blue-600 mr-3" />
                 <span className="text-sm font-bold text-blue-800 tracking-wider">LUXURY CHECKOUT</span>
               </div>
 
@@ -794,7 +842,7 @@ export default function HomePage() {
           <div className="container mx-auto">
             <div className="text-center mb-20">
               <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-full border border-emerald-200/50 mb-8">
-                <MessageCircle className="w-5 h-5 text-emerald-600 mr-3" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5 text-emerald-600 mr-3" />
                 <span className="text-sm font-bold text-emerald-800 tracking-wider">EXPERT SUPPORT</span>
               </div>
 
@@ -829,12 +877,12 @@ export default function HomePage() {
                             <div className="space-y-4">
                               <div className="flex items-center space-x-4">
                                 <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                  <Mail className="w-6 h-6 text-blue-600" aria-hidden="true" />
+                                  <Mail className="w-6 h-6 text-blue-600" />
                                 </div>
                                 <a
                                   href={`mailto:${member.email}`}
                                   className="text-blue-600 hover:text-blue-700 font-semibold text-lg transition-colors break-all"
-                                  aria-label={`Email ${member.name} at ${member.email}`}
+                                  aria-label={`Email ${member.name}`}
                                 >
                                   {member.email}
                                 </a>
@@ -842,12 +890,12 @@ export default function HomePage() {
 
                               <div className="flex items-center space-x-4">
                                 <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                  <Phone className="w-6 h-6 text-purple-600" aria-hidden="true" />
+                                  <Phone className="w-6 h-6 text-purple-600" />
                                 </div>
                                 <a
                                   href={`tel:${member.phone}`}
                                   className="text-purple-600 hover:text-purple-700 font-semibold text-lg transition-colors"
-                                  aria-label={`Call ${member.name} at ${member.phone}`}
+                                  aria-label={`Call ${member.name}`}
                                 >
                                   {member.phone}
                                 </a>
@@ -855,7 +903,7 @@ export default function HomePage() {
 
                               <div className="flex items-center space-x-4">
                                 <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                  <MessageCircle className="w-6 h-6 text-emerald-600" aria-hidden="true" />
+                                  <MessageCircle className="w-6 h-6 text-emerald-600" />
                                 </div>
                                 <a
                                   href={`https://wa.me/${member.whatsapp}?text=Hi%20${member.name.split(" ")[0]}%2C%20I%27m%20interested%20in%20Rootwave%27s%20rice%20straws.%20Can%20you%20help%20me%20with%20pricing%20details%3F`}
@@ -877,7 +925,7 @@ export default function HomePage() {
 
                 <div className="relative p-10 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-3xl border border-emerald-200/50 shadow-xl">
                   <div className="absolute top-6 right-6">
-                    <Crown className="w-8 h-8 text-emerald-600" aria-hidden="true" />
+                    <Crown className="w-8 h-8 text-emerald-600" />
                   </div>
 
                   <h4 className="font-black text-emerald-800 mb-8 text-2xl">🌟 Ready for Partnership?</h4>
@@ -889,10 +937,10 @@ export default function HomePage() {
                   <div className="space-y-6">
                     <Button 
                       className="group w-full py-4 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-lg font-bold shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-2xl"
-                      aria-label="Send email to Rootwave support team"
+                      aria-label="Contact via email"
                     >
                       <div className="flex items-center justify-center space-x-3">
-                        <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" aria-hidden="true" />
+                        <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
                         <a href="mailto:info@rootwave.org">Email Support</a>
                       </div>
                     </Button>
@@ -900,20 +948,20 @@ export default function HomePage() {
                     <Button
                       variant="outline"
                       className="group w-full py-4 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 rounded-2xl"
-                      aria-label="Call Rootwave for immediate consultation"
+                      aria-label="Call for immediate consultation"
                     >
                       <div className="flex items-center justify-center space-x-3">
-                        <Phone className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                        <Phone className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                         <a href="tel:+917760021026">Immediate Consultation</a>
                       </div>
                     </Button>
 
                     <Button 
                       className="group w-full py-4 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 hover:from-emerald-700 hover:via-green-700 hover:to-emerald-800 text-white text-lg font-bold shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500 hover:scale-105 rounded-2xl"
-                      aria-label="Contact Rootwave via WhatsApp"
+                      aria-label="Contact via WhatsApp"
                     >
                       <div className="flex items-center justify-center space-x-3">
-                        <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" aria-hidden="true" />
+                        <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
                         <a
                           href="https://wa.me/917760021026?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20your%20eco-luxury%20rice%20straws.%20Can%20you%20provide%20pricing%20details%3F"
                           target="_blank"
@@ -943,13 +991,7 @@ export default function HomePage() {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <Image 
-                      src="/logo icon -svg-01.png" 
-                      alt="Rootwave company logo" 
-                      width={40} 
-                      height={40} 
-                      className="w-10 h-10" 
-                    />
+                    <Image src="/logo icon -svg-01.png" alt="Rootwave Logo" width={40} height={40} className="w-10 h-10" />
                   </div>
                   <h3 className="text-4xl font-black">Rootwave</h3>
                 </div>
@@ -1010,31 +1052,31 @@ export default function HomePage() {
                 <ul className="space-y-6 text-emerald-200">
                   <li className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-5 h-5" aria-hidden="true" />
+                      <Mail className="w-5 h-5" />
                     </div>
                     <a
                       href="mailto:info@rootwave.org"
                       className="hover:text-white transition-colors font-semibold text-lg break-all"
-                      aria-label="Email Rootwave at info@rootwave.org"
+                      aria-label="Email Rootwave support"
                     >
                       info@rootwave.org
                     </a>
                   </li>
                   <li className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-5 h-5" aria-hidden="true" />
+                      <Phone className="w-5 h-5" />
                     </div>
                     <a 
                       href="tel:+917760021026" 
                       className="hover:text-white transition-colors font-semibold text-lg"
-                      aria-label="Call Rootwave at +91 77600 21026"
+                      aria-label="Call Rootwave support"
                     >
                       +91 77600 21026
                     </a>
                   </li>
                   <li className="flex items-center space-x-4">
                     <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="w-5 h-5" aria-hidden="true" />
+                      <MessageCircle className="w-5 h-5" />
                     </div>
                     <a
                       href="https://wa.me/917760021026?text=Hi%20Rootwave%2C%20I%27m%20interested%20in%20your%20eco-luxury%20rice%20straws."
