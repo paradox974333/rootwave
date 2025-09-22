@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.64,
     },
+     {
+      url: `${baseUrl}/blogs/order-eco-friendly-straws-online`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.64,
+    },
     {
       url: `${baseUrl}/blogs/Learning-from-Local-Heroes`,
       lastModified: new Date(),
