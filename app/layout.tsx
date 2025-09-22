@@ -30,10 +30,10 @@ export default function RootLayout({
         {/* Conditional SEO - only apply if not on blogs page */}
         {shouldApplyDefaultSEO && (
           <>
-            <title>Rootwave - Premium Eco-Friendly Rice Straws | Bulk Wholesale for Restaurants & Cafes | 100% Biodegradable</title>
+            <title>Rootwave Premium Eco Rice Straw — 100% Biodegradable Luxury</title>
             <meta 
               name="description" 
-              content="Transform your business with Rootwave's premium eco-friendly rice straws. 100% biodegradable, edible, and sustainable. Minimum order 1000 straws. Trusted by 500+ establishments worldwide. Bulk wholesale pricing for restaurants, cafes, and hotels. Made in India with zero waste technology."
+              content="Discover our rice straw product line — premium eco-friendly, 100% biodegradable, crafted for luxury & sustainability. Bulk wholesale for restaurants &cafés"
             />
           </>
         )}
