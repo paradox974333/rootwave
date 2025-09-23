@@ -36,7 +36,7 @@ export default function WhyRiceStrawsEcoFriendlyContent() {
 
       <h2 className="text-2xl sm:text-3xl font-semibold mb-4 mt-8">How Do They Make Rice Straws?</h2>
       <p className="mb-6 text-lg leading-relaxed">
-        Rice straws are made in an inventive yet surprisingly straightforward manner. Typically, the procedure entails:
+        <a href="https://shop.rootwave.org/" className="text-emerald-600 hover:text-emerald-800 underline">Rice straw</a> are made in an inventive yet surprisingly straightforward manner. Typically, the procedure entails:
       </p>
       <ul className="list-disc pl-5 mb-6 text-lg leading-relaxed space-y-2">
         <li><strong>Mixing:</strong> To create a dough-like consistency, tapioca starch, water, and rice flour are combined.</li>
