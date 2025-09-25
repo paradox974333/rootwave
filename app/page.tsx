@@ -29,12 +29,16 @@ import {
   Crown,
   Gem,
   ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  HelpCircle,
 } from "lucide-react"
 import Image from "next/image"
 import Head from "next/head"
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
+  const [openFAQ, setOpenFAQ] = useState(null)
 
   const features = [
     {
@@ -242,12 +246,92 @@ export default function HomePage() {
     },
   ]
 
+  // FAQ Data - SEO Optimized
+  const faqs = [
+    {
+      id: 1,
+      question: "What are rice straws and how are they made?",
+      answer: "Rice straws are eco-friendly drinking straws made from rice flour and other natural ingredients. Our premium rice straws are manufactured using advanced zero-waste technology that transforms agricultural byproducts into durable, edible straws. The process involves mixing rice flour with natural binding agents, molding them into straw shapes, and carefully drying them to achieve optimal strength and durability. Each straw maintains its integrity for hours in liquids while being 100% biodegradable and edible.",
+      category: "product"
+    },
+    {
+      id: 2,
+      question: "How long do rice straws last in drinks?",
+      answer: "Rootwave rice straws are engineered to maintain their structural integrity for 2-4 hours in cold beverages and 1-2 hours in hot drinks. Unlike paper straws that become soggy within minutes, our premium rice straws provide a consistent drinking experience throughout your beverage consumption. The durability varies slightly based on the liquid type, temperature, and acidity level, but they consistently outperform paper alternatives while remaining completely biodegradable.",
+      category: "usage"
+    },
+    {
+      id: 3,
+      question: "What is the minimum order quantity for businesses?",
+      answer: "Our minimum order quantity is 1,000 straws per order, designed specifically for restaurants, cafes, hotels, and other food service establishments. We offer attractive bulk pricing tiers: Standard pricing for 10K-49K straws, 10% discount for 50K-99K straws, 15% discount for 100K-249K straws, and 20% discount for orders above 250K straws. This B2B focus ensures cost-effectiveness for businesses while maintaining our premium quality standards.",
+      category: "ordering"
+    },
+    {
+      id: 4,
+      question: "Are rice straws really biodegradable and how long does decomposition take?",
+      answer: "Yes, Rootwave rice straws are 100% biodegradable and compostable. They completely decompose within 90 days under normal composting conditions, compared to 500+ years for plastic straws. Our straws are made from natural, plant-based materials that break down safely into the environment without leaving harmful residues. They're also edible and food-safe, meeting all international food safety standards. This makes them the most environmentally responsible choice for businesses committed to sustainability.",
+      category: "environment"
+    },
+    {
+      id: 5,
+      question: "Can I customize rice straws with my restaurant's branding?",
+      answer: "Absolutely! We offer premium custom branding services including embossed logos, luxury matte finish packaging, and spot UV accents. Custom branding requires a one-time setup fee of ₹10,000 and maintains our minimum order quantity of 1,000 straws. Our custom-printed pouches are perfect for high-end establishments looking to enhance their brand visibility while demonstrating environmental commitment. The branding process takes 7-10 business days after artwork approval.",
+      category: "customization"
+    },
+    {
+      id: 6,
+      question: "What sizes and colors are available?",
+      answer: "We offer four precision-engineered diameters: 6.5mm (ideal for fine beverages and cocktails), 8mm (perfect for smoothies and milkshakes), 10mm (enhanced diameter for thick beverages), and 13mm (ultra-wide for bubble tea and specialty drinks). Our signature color palette includes Pearl White, Sunset Orange, Forest Green, Midnight Black, and Ruby Red. All colors are included at no additional cost and are carefully selected to complement various beverage types and restaurant aesthetics.",
+      category: "product"
+    },
+    {
+      id: 7,
+      question: "How do I place a bulk order and what are the payment terms?",
+      answer: "You can place orders through our website contact form, email us at info@rootwave.org, call +91 77600 21026, or message us on WhatsApp. We accept payments via bank transfer, UPI, and other standard business payment methods. For orders above ₹25,000, we provide complimentary white-glove delivery. Our team provides dedicated account management for orders above 100K straws, ensuring personalized service and support throughout your partnership with us.",
+      category: "ordering"
+    },
+    {
+      id: 8,
+      question: "Are rice straws safe to eat and what do they taste like?",
+      answer: "Yes, our rice straws are completely food-safe and edible. They're made from rice flour and natural ingredients, meeting all international food safety standards. The straws have a very mild, neutral taste that doesn't interfere with your beverage's flavor. Some customers describe a subtle rice-like taste, but it's generally unnoticeable during normal use. They're 100% vegan, gluten-free, and free from artificial additives, making them suitable for customers with various dietary restrictions.",
+      category: "safety"
+    },
+    {
+      id: 9,
+      question: "How do rice straws compare to paper and plastic straws?",
+      answer: "Rice straws significantly outperform both paper and plastic alternatives. Unlike paper straws that become soggy within minutes and require deforestation for production, rice straws maintain firmness for hours and utilize agricultural waste. Compared to plastic straws that take 500+ years to decompose and create microplastic pollution, rice straws biodegrade completely in 90 days. They offer superior durability over paper, better environmental impact than plastic, and provide a premium user experience that enhances your brand image.",
+      category: "comparison"
+    },
+    {
+      id: 10,
+      question: "Do you offer international shipping and what are the delivery times?",
+      answer: "Currently, we primarily serve the Indian market with plans for international expansion. Within India, we offer nationwide delivery with standard delivery times of 5-7 business days for regular orders. For premium orders above ₹25,000, we provide complimentary white-glove delivery service. Our logistics team ensures careful packaging to maintain product integrity during transit. For international inquiries, please contact our team to discuss special arrangements and shipping options to your location.",
+      category: "shipping"
+    },
+    {
+      id: 11,
+      question: "What certifications and quality standards do your rice straws meet?",
+      answer: "Rootwave rice straws are 100% eco-certified and meet international food safety standards. Our manufacturing process follows strict quality assurance protocols and sustainable production practices. We maintain certifications for biodegradability, food safety, and environmental sustainability. Each batch undergoes rigorous quality testing to ensure consistency in durability, safety, and performance. Our zero-waste technology and vegan, cruelty-free production methods align with the highest environmental and ethical standards in the industry.",
+      category: "quality"
+    },
+    {
+      id: 12,
+      question: "Can rice straws be used for hot beverages like coffee and tea?",
+      answer: "Yes, rice straws can be used for hot beverages, though their optimal performance is in cold to warm drinks. For hot beverages like coffee and tea, they typically maintain integrity for 1-2 hours, which is sufficient for most drinking experiences. However, we recommend them primarily for cold beverages, smoothies, and warm drinks rather than extremely hot liquids. The natural materials may soften more quickly in very hot temperatures, but they remain safe to use and will not release harmful substances like some plastic alternatives might.",
+      category: "usage"
+    }
+  ]
+
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
       setActiveSection(sectionId)
     }
+  }
+
+  const toggleFAQ = (id) => {
+    setOpenFAQ(openFAQ === id ? null : id)
   }
 
   return (
@@ -260,7 +344,7 @@ export default function HomePage() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="eco-friendly straws, rice straws, biodegradable straws, sustainable restaurant supplies, edible straws, zero waste straws, premium straws, bulk straws" />
+        <meta name="keywords" content="eco-friendly straws, rice straws, biodegradable straws, sustainable restaurant supplies, edible straws, zero waste straws, premium straws, bulk straws, rice straw FAQ, sustainable dining, eco restaurant supplies" />
         
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="Rootwave - Premium Eco-Friendly Rice Straws" />
@@ -285,7 +369,23 @@ export default function HomePage() {
         <link rel="icon" href="/logo icon -svg-01.png" />
         <link rel="apple-touch-icon" href="/logo icon -svg-01.png" />
         
-        {/* Structured Data */}
+        {/* Structured Data for FAQs */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })}
+        </script>
+        
+        {/* Structured Data for Organization */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -816,6 +916,140 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* FAQ Section - NEW ADDITION */}
+        <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50">
+          <div className="container mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full border border-blue-200/50 mb-8">
+                <HelpCircle className="w-5 h-5 text-blue-600 mr-3" />
+                <span className="text-sm font-bold text-blue-800 tracking-wider">FREQUENTLY ASKED QUESTIONS</span>
+              </div>
+
+              <h2 className="text-6xl font-black mb-8 leading-tight">
+                <span className="block text-gray-900">Everything You</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Need to Know
+                </span>
+                <span className="block text-gray-700 text-3xl font-light mt-4">About Rice Straws</span>
+              </h2>
+              
+              <p className="text-xl text-gray-600 font-medium max-w-3xl mx-auto">
+                Get instant answers to common questions about our premium eco-friendly rice straws, 
+                from ordering details to environmental impact.
+              </p>
+            </div>
+
+            {/* FAQ Grid */}
+            <div className="max-w-4xl mx-auto">
+              <div className="space-y-4">
+                {faqs.map((faq) => (
+                  <Card 
+                    key={faq.id} 
+                    className="group relative border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500 bg-gradient-to-br from-white to-gray-50 rounded-2xl overflow-hidden"
+                  >
+                    <CardContent className="p-0">
+                      <button
+                        onClick={() => toggleFAQ(faq.id)}
+                        className="w-full p-8 text-left flex items-center justify-between hover:bg-blue-50/50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-2xl"
+                        aria-expanded={openFAQ === faq.id}
+                        aria-controls={`faq-answer-${faq.id}`}
+                      >
+                        <div className="flex items-start space-x-4 flex-1">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mt-1">
+                            <span className="text-blue-600 font-bold text-sm">{faq.id}</span>
+                          </div>
+                          <h3 className="text-xl font-black text-gray-900 leading-relaxed pr-4 group-hover:text-blue-900 transition-colors">
+                            {faq.question}
+                          </h3>
+                        </div>
+                        <div className="flex-shrink-0 ml-4">
+                          {openFAQ === faq.id ? (
+                            <ChevronUp className="w-6 h-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                          ) : (
+                            <ChevronDown className="w-6 h-6 text-gray-400 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300" />
+                          )}
+                        </div>
+                      </button>
+                      
+                      {openFAQ === faq.id && (
+                        <div 
+                          id={`faq-answer-${faq.id}`}
+                          className="px-8 pb-8 animate-in slide-in-from-top-2 duration-300"
+                        >
+                          <div className="ml-12 pt-4 border-t border-gray-200">
+                            <p className="text-gray-700 leading-relaxed font-medium text-lg">
+                              {faq.answer}
+                            </p>
+                            <div className="mt-4">
+                              <Badge 
+                                className={`px-4 py-2 text-sm font-semibold rounded-full ${
+                                  faq.category === 'product' ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' :
+                                  faq.category === 'usage' ? 'bg-blue-100 text-blue-800 border border-blue-300' :
+                                  faq.category === 'ordering' ? 'bg-purple-100 text-purple-800 border border-purple-300' :
+                                  faq.category === 'environment' ? 'bg-green-100 text-green-800 border border-green-300' :
+                                  faq.category === 'customization' ? 'bg-pink-100 text-pink-800 border border-pink-300' :
+                                  faq.category === 'safety' ? 'bg-orange-100 text-orange-800 border border-orange-300' :
+                                  faq.category === 'comparison' ? 'bg-red-100 text-red-800 border border-red-300' :
+                                  faq.category === 'shipping' ? 'bg-indigo-100 text-indigo-800 border border-indigo-300' :
+                                  faq.category === 'quality' ? 'bg-amber-100 text-amber-800 border border-amber-300' :
+                                  'bg-gray-100 text-gray-800 border border-gray-300'
+                                }`}
+                              >
+                                {faq.category.charAt(0).toUpperCase() + faq.category.slice(1)}
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA after FAQ */}
+            <div className="text-center mt-20">
+              <div className="relative p-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl border border-blue-200/50 shadow-xl max-w-4xl mx-auto">
+                <div className="absolute top-6 right-6">
+                  <MessageCircle className="w-8 h-8 text-blue-600" />
+                </div>
+                
+                <h3 className="text-4xl font-black mb-6 text-gray-900">Still Have Questions?</h3>
+                <p className="text-xl text-gray-700 mb-8 font-medium leading-relaxed">
+                  Our eco-luxury experts are here to help you make the perfect choice for your establishment. 
+                  Get personalized recommendations and instant support.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button
+                    onClick={() => handleScrollToSection("contact")}
+                    className="group px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:via-indigo-700 hover:to-blue-800 text-white text-lg font-bold shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 hover:scale-105 rounded-2xl"
+                    aria-label="Contact our expert team"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                      <span>Contact Our Experts</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    className="group px-8 py-4 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 rounded-2xl"
+                    aria-label="Call for immediate support"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <Phone className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                      <a href="tel:+917760021026">Call: +91 77600 21026</a>
+                    </div>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Checkout Section */}
         <section id="checkout" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-gray-50">
           <div className="container mx-auto">
@@ -1007,30 +1241,19 @@ export default function HomePage() {
                   {[
                     { name: "Home", type: "scroll" },
                     { name: "Products", type: "scroll" },
+                    { name: "FAQ", type: "scroll" },
                     { name: "Contact", type: "scroll" },
-                    { name: "Blogs", href: "/blogs", type: "page" },
                   ].map((item) => (
                     <li key={item.name}>
-                      {item.type === "page" ? (
-                        <a
-                          href={item.href}
-                          className="hover:text-white cursor-pointer transition-colors font-semibold text-lg group"
-                        >
-                          <span className="group-hover:translate-x-2 transition-transform duration-300 inline-block">
-                            {item.name}
-                          </span>
-                        </a>
-                      ) : (
-                        <button
-                          onClick={() => handleScrollToSection(item.name.toLowerCase())}
-                          className="hover:text-white cursor-pointer transition-colors font-semibold text-lg group"
-                          aria-label={`Navigate to ${item.name} section`}
-                        >
-                          <span className="group-hover:translate-x-2 transition-transform duration-300 inline-block">
-                            {item.name}
-                          </span>
-                        </button>
-                      )}
+                      <button
+                        onClick={() => handleScrollToSection(item.name.toLowerCase())}
+                        className="hover:text-white cursor-pointer transition-colors font-semibold text-lg group"
+                        aria-label={`Navigate to ${item.name} section`}
+                      >
+                        <span className="group-hover:translate-x-2 transition-transform duration-300 inline-block">
+                          {item.name}
+                        </span>
+                      </button>
                     </li>
                   ))}
                 </ul>
