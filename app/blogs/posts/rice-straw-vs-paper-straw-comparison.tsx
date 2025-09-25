@@ -19,7 +19,7 @@ export default function WhyRiceStrawsEcoFriendlyContent() {
       </h1>
 
       <p className="mb-6 text-lg leading-relaxed">
-        There has been a significant global shift in favor of sustainability in recent years. Eco-friendly alternatives are gradually replacing the ubiquitous plastic straws found in every home, restaurant, and café. Paper straws and drinking rice straws are two options that have drawn interest. Although both are classified as natural drinking straws, it is still unclear which is actually superior for daily use.
+        There has been a significant global shift in favor of sustainability in recent years. Eco-friendly alternatives are gradually replacing the ubiquitous plastic straws found in every home, restaurant, and café. Paper straws and drinking rice straws are two options that have drawn interest. Although both are classified as <a href="https://shop.rootwave.org/" className="text-emerald-600 hover:text-emerald-800 underline">natural drinking straws</a>, it is still unclear which is actually superior for daily use.
       </p>
 
       <p className="mb-6 text-lg leading-relaxed">
