@@ -1,7 +1,7 @@
 // Single metadata object for this specific post
 export const meta = {
   title: "Rice Straw vs Paper Straw | Best Natural Drinking Straws | RootWave Insights",
-  date: "2025-09-23",
+  date: "2025-09-25",
   author: "prateek (cmo), Sustainability Expert",
   readTimeMinutes: 10,
   image: "/blog-images/ChatGPT Image Sep 25, 2025, 12_33_41 PM.png", // Path from /public
