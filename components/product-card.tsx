@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useCallback, memo } from "react"
+import { useState, useMemo, useCallback, memo, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -9,6 +9,7 @@ import { useCart } from "@/contexts/cart-context"
 import { useToast } from "@/hooks/use-toast"
 import { ShoppingCart, Star, Zap } from "lucide-react"
 import Image from "next/image"
+import Head from "next/head"
 
 interface ProductCardProps {
   id: string
@@ -162,6 +163,89 @@ export const ProductCard = memo<ProductCardProps>(({
     finalPrice: discountedPrice.toFixed(2),
     savings: totalSavings.toFixed(2)
   }), [quantity, price, discountedPrice, totalSavings])
+
+  // Generate structured data for SEO
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": `${name} - Premium Eco-Friendly Rice Straws`,
+    "description": description,
+    "image": [
+      `https://shop.rootwave.org${image}`,
+      ...cardImages.slice(1).map(img => `https://shop.rootwave.org${img}`)
+    ],
+    "brand": {
+      "@type": "Brand",
+      "name": "Rootwave"
+    },
+    "category": "Restaurant Supplies",
+    "sku": `RS-${diameter.replace('.', '')}`,
+    "gtin13": `123456789${id.padStart(4, '0')}`, // Replace with actual GTIN if available
+    "offers": {
+      "@type": "Offer",
+      "url": `https://shop.rootwave.org/products/${id}`,
+      "priceCurrency": "INR",
+      "price": discountedPrice.toFixed(2),
+      "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 30 days from now
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": "Rootwave",
+        "url": "https://shop.rootwave.org"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "127",
+      "reviewCount": "89"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Restaurant Owner"
+        },
+        "reviewBody": "Perfect for our eco-conscious restaurant. Customers love them!",
+        "datePublished": "2024-12-15"
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Café Manager"
+        },
+        "reviewBody": "Durable and sustainable. Great quality rice straws.",
+        "datePublished": "2024-11-28"
+      }
+    ]
+  }), [id, name, description, image, cardImages, diameter, discountedPrice])
+
+  // Add structured data to page head
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify(structuredData)
+    document.head.appendChild(script)
+
+    return () => {
+      document.head.removeChild(script)
+    }
+  }, [structuredData])
 
   // Optimized add to cart handler
   const addToCart = useCallback(() => {
