@@ -55,7 +55,7 @@ export default function DrinkingRiceStrawSuppliersPostContent() {
       </h2>
       
       <p className="mb-4 text-lg leading-relaxed">
-        Here are the main advantages you should be aware of if you are thinking about obtaining rice straws for your café, restaurant, or personal use:
+        Here are the main advantages you should be aware of if you are thinking about obtaining  <a href="https://www.rootwave.org/" className="text-emerald-600 hover:text-emerald-800 underline">Rice straw</a> for your café, restaurant, or personal use:
       </p>
 
       <h3 className="text-xl font-semibold mb-3 mt-6">
