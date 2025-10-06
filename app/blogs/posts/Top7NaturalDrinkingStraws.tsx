@@ -4,7 +4,7 @@ export const meta = {
   date: "2025-10-06",
   author: "prateek (cmo), Sustainability Expert",
   readTimeMinutes: 7,
-  image: "/blog-images/ChatGPT Image Oct 6, 2025, 12_19_17 PM.png", // Update with your actual image path
+  image: "/blog-images/ChatGPT Image Oct 6, 2025, 06_00_32 PM.png", // Update with your actual image path
   tags: ["Natural Drinking Straws", "Eco-Friendly", "Sustainability", "Biodegradable Straws", "RootWave", "Rice Straws"],
   description: "Discover 7 reasons why natural drinking straws are better for the planet and your drinks. Learn how they beat plastic and paper options.",
   keywords: "natural drinking straws, biodegradable straws, eco-friendly straws, rice straws, bamboo straws, wheat straws, sustainable straws, plastic alternatives",
