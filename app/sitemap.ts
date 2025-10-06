@@ -1,74 +1,43 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { getAllPostsMeta } from '@/lib/blog-loader';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://shop.rootwave.org'
+export const revalidate = 3600; // Revalidate every hour
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = 'https://shop.rootwave.org';
   
-  return [
+  // Automatically fetch ALL blog posts
+  const posts = await getAllPostsMeta();
+  
+  // Generate blog URLs dynamically
+  const blogUrls = posts.map((post) => ({
+    url: `${baseUrl}/blogs/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+  
+  // Static pages
+  const staticPages = [
     {
-      url: `${baseUrl}/`,
+      url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 1.0,
     },
     {
       url: `${baseUrl}/blogs`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 1.0,
     },
     {
       url: `${baseUrl}/samples`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 1.0,
     },
-    {
-      url: `${baseUrl}/blogs/drinking-rice-straw-suppliers-near-me`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/rice-straw-vs-paper-straw-comparison`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/what-is-drinking-rice-straw-eco-friendly`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/WhereToByRiceStrawsPostContent`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/order-eco-friendly-straws-online`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/Learning-from-Local-Heroes`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/why-rice-straws`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blogs/our-journey`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ]
+  ];
+  
+  return [...staticPages, ...blogUrls];
 }
