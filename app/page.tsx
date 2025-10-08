@@ -409,6 +409,44 @@ export default function HomePage() {
             ]
           })}
         </script>
+        {/* Product Schema - ADD THIS */}
+<script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": products.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": `${product.name} - Premium Eco-Friendly Rice Straws`,
+        "description": product.description,
+        "brand": {
+          "@type": "Brand",
+          "name": "Rootwave"
+        },
+        "category": "Restaurant Supplies",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://shop.rootwave.org/",
+          "priceCurrency": "INR",
+          "price": product.price.toFixed(2),
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Rootwave"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "127"
+        }
+      }
+    }))
+  })}
+</script>
+
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 overflow-x-hidden">
