@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperorbs Leaderboard</title>
+<style>
+:root{--bg:#07090d;--panel:#0d1118;--line:#1a212c;--text:#e8edf4;--mut:#8591a3;--blue:#4f8dff;--green:#2ecc8f;--red:#f0555a;--amber:#f2b94b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.14em;font-size:22px}.nav a{color:#d6deea;font-weight:600}.nav a.on{color:var(--blue)}
+.sp{flex:1}.search{display:flex;align-items:center;gap:8px;background:#11161f;border-radius:10px;padding:9px 14px;width:300px;color:var(--mut)}
+.btn{background:var(--blue);color:#06101f;border:0;border-radius:10px;padding:9px 18px;font-weight:700;cursor:pointer}
+.hero{padding:34px 0 10px}.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase}
+h1{font-size:38px;margin:6px 0 6px;letter-spacing:-.02em}.sub{color:var(--mut);margin:0 0 22px}
+.boxes{display:grid;grid-template-columns:1fr 1.25fr;gap:16px}
+.box{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);min-height:200px}
+.box.black{background:#000;border-color:#222c3a;box-shadow:0 0 0 1px #000,0 20px 60px -30px rgba(79,141,255,.5);position:relative;overflow:hidden}
+.box.black:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(79,141,255,.25),transparent)}
+.lbl{color:var(--mut);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.big{font-size:60px;font-weight:800;letter-spacing:-.03em;margin:14px 0 4px}.chg{color:var(--green);font-weight:600}
+.hot{display:flex;flex-direction:column;gap:2px;margin-top:10px}.hrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.hrow:last-child{border:0}
+.av{width:30px;height:30px;border-radius:50%;flex:none}.hv{margin-left:auto;font-weight:700}.hr{color:var(--mut);width:18px}
+.tabs{display:flex;gap:28px;margin-top:30px;border-bottom:1px solid var(--line)}.tab{padding:12px 0;color:var(--mut);font-size:19px;cursor:pointer;position:relative}.tab.on{color:#fff;font-weight:700}.tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
+.bar{display:flex;align-items:center;gap:8px;padding:16px 0}.chip{padding:9px 14px;border-radius:10px;color:#c5cfdd;font-weight:600;cursor:pointer;background:transparent;border:0;font-size:15px}.chip.on{background:#0f2a52;color:var(--blue)}
+.tools{margin-left:auto;display:flex;gap:10px}.tbtn{background:#11161f;border:1px solid var(--line);color:#dbe3ee;padding:9px 14px;border-radius:10px;font-weight:600;cursor:pointer}
+table{width:100%;border-collapse:collapse}th{color:var(--mut);font-weight:600;font-size:13.5px;text-align:left;padding:14px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:14px 10px;border-bottom:1px solid var(--line);white-space:nowrap}.r{text-align:right}th.r{text-align:right}
+tr.row:hover td{background:#0b0f16}.rank{color:var(--mut);width:46px}.star{color:#566073;width:36px}.name{display:flex;align-items:center;gap:12px;font-weight:700}.name small{color:var(--mut);font-weight:500;margin-left:6px}
+.tag{border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:12px;color:#aab5c5;margin-left:8px;font-weight:500}
+.weeks{display:flex;gap:3px;justify-content:flex-end;margin-top:5px}.weeks i{width:8px;height:12px;border-radius:2px;background:#1c2431}.weeks i.f{background:var(--blue)}
+.mom{text-align:right;font-weight:600;font-size:13.5px}.mb{display:flex;gap:3px;justify-content:flex-end;margin-top:6px}.mb i{width:18px;height:3px;border-radius:2px;background:#232b38}
+.Hot,.Rising{color:var(--green)}.Cooling{color:var(--red)}.Steady,.New{color:#c3ccda}
+.Hot i.f,.Rising i.f{background:var(--green)}.Cooling i.f{background:var(--red)}.Steady i.f,.New i.f{background:#8793a6}
+.note{color:var(--mut);font-size:13px;padding:16px 0 50px}
+/* skeleton */
+.sk{background:linear-gradient(90deg,#111722 25%,#1a2230 37%,#111722 63%);background-size:400% 100%;animation:sh 1.3s infinite;border-radius:8px;display:inline-block}
+@keyframes sh{0%{background-position:100% 50%}100%{background-position:0 50%}}
+.sk.c{border-radius:50%}.black .sk{background:linear-gradient(90deg,#0c0f14 25%,#171d27 37%,#0c0f14 63%);background-size:400% 100%}
+@media(max-width:900px){.boxes{grid-template-columns:1fr}.big{font-size:44px}.nav{display:none}.search{width:auto;flex:1}.bar{flex-wrap:wrap}.tools{margin-left:0}.tbl{overflow-x:auto}table{min-width:760px}}
+</style></head><body>
+<div class="wrap">
+<nav><span class="logo">HYPER</span><div class="nav" style="display:flex;gap:22px"><a class="on" href="#">Leaderboard</a><a href="#">ScaleBot</a><a href="#">Funding</a><a href="#">Tour</a><a href="#">Ink</a><a href="#">Pricing</a></div><span class="sp"></span><div class="search">⌕ Search teams</div><a href="#" style="font-weight:600">Log in</a><button class="btn">Apply</button></nav>
+
+<section class="hero">
+<div class="eyebrow">Live rankings</div><h1>Hyperorbs Leaderboard</h1>
+<p class="sub">See who's winning on Hyperorbs: top startups and creators, ranked live.</p>
+<div class="boxes">
+<div class="box black"><div class="lbl">Total Turnover</div><div id="turn" class="big"></div><div class="chg" id="turnchg"></div></div>
+<div class="box"><div class="lbl">Hot by Trading Volume</div><div class="hot" id="hot"></div></div>
+</div></section>
+
+<div class="tabs" id="tabs"></div>
+<div class="bar"><div id="chips" style="display:flex;gap:6px;flex-wrap:wrap"></div><div class="tools"><button class="tbtn">☰ Filters</button><button class="tbtn">▥ Columns</button><button class="tbtn" id="reload" title="Replay loading skeleton">↻ Skeleton</button></div></div>
+<div class="tbl"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+<div class="note" id="note"></div>
+</div>
+<script>
+// ---- sample data (replace with real API) ----
+const pal=["#4f8dff","#e8edf4","#ff7a45","#2ecc8f","#b565ff","#f2b94b","#ff5c8a","#36c5d8","#8bd449","#ff9f43"];
+const startups=[["Rangoli Living","Home decor",4820000000,293,10,"Hot",908],["Mintcraft","Creator tools",3150000000,444,12,"Rising",907],["Copy That","Copywriting",2410000000,411,12,"Rising",883],["Plotline Studio","Media",1920000000,318,12,"Steady",871],["Granite & Grain","Food",1380000000,430,7,"Rising",867],["Kharcha Labs","Fintech",964000000,225,10,"Rising",866],["Portline","Logistics",731000000,347,12,"Rising",863],["Meridian Textiles","Manufacturing",512000000,532,12,"Steady",841],["Study Circle","Edtech",298000000,210,12,"Rising",815],["Paywise HR","HR tech",184000000,350,11,"Hot",812]];
+const creators=[["Aarav Mehta","Tech reviews",86,412,12,"Hot",931],["Nisha Rao","Lifestyle",74,388,12,"Rising",918],["Dev Patel","Finance",63,355,11,"Rising",902],["Isha Kapoor","Fitness",58,341,12,"Steady",889],["Rohan Das","Gaming",51,320,10,"Rising",871],["Meera Nair","Food",44,298,12,"Steady",853],["Kabir Shah","Travel",39,276,9,"Rising",840],["Tara Iyer","Fashion",33,251,12,"Cooling",822]];
+const vol=[["Rangoli Living",912000000,"+18%"],["Mintcraft",640000000,"+9%"],["Copy That",455000000,"+22%"],["Kharcha Labs",301000000,"+31%"],["Portline",224000000,"+6%"]];
+const TOTAL=21400000000;
+const views=["Top","Trending","Watchlist","Rising","Gainers","Most consistent","New"],cats=["All teams","Startups","Students","Creators","Freelancers","Companies"];
+let view="Top",cat="Startups",loading=true;
+const fmt=n=>{const a=Math.abs(n);for(const [v,s] of [[1e12,"T"],[1e9,"B"],[1e6,"M"],[1e3,"K"]])if(a>=v){const x=n/v;return (x>=100?x.toFixed(0):x.toFixed(1).replace(/\.0$/,""))+s}return String(n)};
+const cur="₹";
+function spark(seed,color){let y=20,pts=[];for(let i=0;i<12;i++){y+=Math.sin(seed*7+i*1.7)*6-1.3;y=Math.max(4,Math.min(34,y));pts.push(`${i*10},${(38-y).toFixed(1)}`)}return `<svg width="120" height="38" viewBox="0 0 110 38"><polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/></svg>`}
+function render(){
+ // hero
+ document.getElementById("turn").innerHTML=loading?'<span class="sk" style="width:260px;height:56px"></span>':cur+fmt(TOTAL);
+ document.getElementById("turn").title=loading?"":cur+TOTAL.toLocaleString("en-IN");
+ document.getElementById("turnchg").innerHTML=loading?'<span class="sk" style="width:130px;height:16px"></span>':"▲ 12.4% vs last 30 days";
+ document.getElementById("hot").innerHTML=vol.map((v,i)=>loading?`<div class="hrow"><span class="sk c av"></span><span class="sk" style="width:${140-i*10}px;height:14px"></span><span class="sk hv" style="width:70px;height:14px"></span></div>`:`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${v[0]}</b><span class="hv">${cur}${fmt(v[1])} <small style="color:var(--green)">${v[2]}</small></span></div>`).join("");
+ document.getElementById("tabs").innerHTML=views.map(v=>`<div class="tab ${v==view?"on":""}" data-v="${v}">${v}</div>`).join("");
+ document.getElementById("chips").innerHTML=cats.map(c=>`<button class="chip ${c==cat?"on":""}" data-c="${c}">${c}</button>`).join("");
+ const isC=cat=="Creators";const data=isC?creators:startups;
+ const metric=isC?"Brand deals":"Turnover";
+ document.getElementById("thead").innerHTML=`<tr><th></th><th>#</th><th>Name</th><th class="r">${metric} ⇅</th><th class="r">Score ⇅</th><th class="r">Tasks · 30d ⇅</th><th class="r">Active weeks ⇅</th><th class="r">Momentum ⇅</th><th class="r">Last 12 weeks ⇅</th></tr>`;
+ document.getElementById("tbody").innerHTML=loading?Array.from({length:8},(_,i)=>`<tr><td class="star"><span class="sk" style="width:16px;height:16px"></span></td><td class="rank"><span class="sk" style="width:18px;height:14px"></span></td><td><div class="name"><span class="sk c av"></span><span class="sk" style="width:${150+(i%3)*30}px;height:14px"></span></div></td><td class="r"><span class="sk" style="width:60px;height:14px"></span></td><td class="r"><span class="sk" style="width:40px;height:14px"></span></td><td class="r"><span class="sk" style="width:44px;height:14px"></span></td><td class="r"><span class="sk" style="width:110px;height:14px"></span></td><td class="r"><span class="sk" style="width:64px;height:14px"></span></td><td class="r"><span class="sk" style="width:110px;height:28px"></span></td></tr>`).join(""):
+ data.map((d,i)=>{const [n,sub,m,t,w,mo,sc]=d;const mc={Hot:"var(--green)",Rising:"var(--green)",Cooling:"var(--red)"}[mo]||"#8793a6";const nb={Hot:4,Rising:3,Steady:3,Cooling:2,New:1}[mo];
+  return `<tr class="row"><td class="star">☆</td><td class="rank">${i+1}</td><td><div class="name"><span class="av" style="background:${pal[i%10]}"></span>${n}<small>${sub}</small></div></td><td class="r"><b>${isC?m:cur+fmt(m)}</b></td><td class="r"><b>${sc}</b></td><td class="r">${t}</td><td class="r">${w} / 12<div class="weeks">${Array.from({length:12},(_,k)=>`<i class="${k>=12-w?"f":""}"></i>`).join("")}</div></td><td class="mom ${mo}">${mo}<div class="mb ${mo}">${Array.from({length:4},(_,k)=>`<i class="${k<nb?"f":""}"></i>`).join("")}</div></td><td class="r">${spark(i+1,mc)}</td></tr>`}).join("");
+ document.getElementById("note").textContent=isC?"Creators are ranked by number of brand deals, then tasks completed (30d). Sample data shown.":"Startups are ranked by turnover, then tasks completed (30d). Sample data shown.";
+}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-v],[data-c]");if(t){if(t.dataset.v)view=t.dataset.v;if(t.dataset.c)cat=t.dataset.c;render()}if(e.target.id=="reload"){loading=true;render();setTimeout(()=>{loading=false;render()},1600)}});
+render();setTimeout(()=>{loading=false;render()},1400);
+</script></body></html>
