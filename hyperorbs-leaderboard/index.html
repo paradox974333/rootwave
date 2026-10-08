@@ -6,19 +6,19 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
 nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid var(--line)}
-.logo{font-weight:800;letter-spacing:.14em;font-size:22px}.nav a{color:#d6deea;font-weight:600}.nav a.on{color:var(--blue)}
+.logo{font-weight:800;letter-spacing:.14em;font-size:22px}.nav{display:flex;gap:22px}.nav a{color:#d6deea;font-weight:600}.nav a.on{color:var(--blue)}
 .sp{flex:1}.search{display:flex;align-items:center;gap:8px;background:#11161f;border-radius:10px;padding:9px 14px;width:300px;color:var(--mut)}
 .btn{background:var(--blue);color:#06101f;border:0;border-radius:10px;padding:9px 18px;font-weight:700;cursor:pointer}
 .hero{padding:34px 0 10px}.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase}
 h1{font-size:38px;margin:6px 0 6px;letter-spacing:-.02em}.sub{color:var(--mut);margin:0 0 22px}
-.boxes{display:grid;grid-template-columns:1fr 1.25fr;gap:16px}
-.box{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);min-height:200px}
+.boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.box{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);min-height:250px}
 .box.black{background:#000;border-color:#222c3a;box-shadow:0 0 0 1px #000,0 20px 60px -30px rgba(79,141,255,.5);position:relative;overflow:hidden}
 .box.black:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(79,141,255,.25),transparent)}
 .lbl{color:var(--mut);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.big{font-size:60px;font-weight:800;letter-spacing:-.03em;margin:14px 0 4px}.chg{color:var(--green);font-weight:600}
+.big{font-size:46px;font-weight:800;letter-spacing:-.03em;margin:14px 0 4px}.chg{color:var(--green);font-weight:600}
 .hot{display:flex;flex-direction:column;gap:2px;margin-top:10px}.hrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.hrow:last-child{border:0}
-.av{width:30px;height:30px;border-radius:50%;flex:none}.hv{margin-left:auto;font-weight:700}.hr{color:var(--mut);width:18px}
+.av{width:30px;height:30px;border-radius:50%;flex:none}.hv{margin-left:auto;font-weight:700;text-align:right}.hrow b{font-size:14px}.hrow small.s{white-space:nowrap;color:var(--mut);display:block;font-weight:500;font-size:11.5px}.hr{color:var(--mut);width:18px}
 .tabs{display:flex;gap:28px;margin-top:30px;border-bottom:1px solid var(--line)}.tab{padding:12px 0;color:var(--mut);font-size:19px;cursor:pointer;position:relative}.tab.on{color:#fff;font-weight:700}.tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
 .bar{display:flex;align-items:center;gap:8px;padding:16px 0}.chip{padding:9px 14px;border-radius:10px;color:#c5cfdd;font-weight:600;cursor:pointer;background:transparent;border:0;font-size:15px}.chip.on{background:#0f2a52;color:var(--blue)}
 .tools{margin-left:auto;display:flex;gap:10px}.tbtn{background:#11161f;border:1px solid var(--line);color:#dbe3ee;padding:9px 14px;border-radius:10px;font-weight:600;cursor:pointer}
@@ -35,10 +35,10 @@ tr.row:hover td{background:#0b0f16}.rank{color:var(--mut);width:46px}.star{color
 .sk{background:linear-gradient(90deg,#111722 25%,#1a2230 37%,#111722 63%);background-size:400% 100%;animation:sh 1.3s infinite;border-radius:8px;display:inline-block}
 @keyframes sh{0%{background-position:100% 50%}100%{background-position:0 50%}}
 .sk.c{border-radius:50%}.black .sk{background:linear-gradient(90deg,#0c0f14 25%,#171d27 37%,#0c0f14 63%);background-size:400% 100%}
-@media(max-width:900px){.boxes{grid-template-columns:1fr}.big{font-size:44px}.nav{display:none}.search{width:auto;flex:1}.bar{flex-wrap:wrap}.tools{margin-left:0}.tbl{overflow-x:auto}table{min-width:760px}}
+@media(max-width:1100px){.boxes{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.boxes{grid-template-columns:1fr}}@media(max-width:900px){.big{font-size:44px}.nav{display:none}.search{width:auto;flex:1}.bar{flex-wrap:wrap}.tools{margin-left:0}.tbl{overflow-x:auto}table{min-width:760px}}
 </style></head><body>
 <div class="wrap">
-<nav><span class="logo">HYPER</span><div class="nav" style="display:flex;gap:22px"><a class="on" href="#">Leaderboard</a><a href="#">ScaleBot</a><a href="#">Funding</a><a href="#">Tour</a><a href="#">Ink</a><a href="#">Pricing</a></div><span class="sp"></span><div class="search">⌕ Search teams</div><a href="#" style="font-weight:600">Log in</a><button class="btn">Apply</button></nav>
+<nav><span class="logo">HYPER</span><div class="nav"><a class="on" href="#">Leaderboard</a><a href="#">ScaleBot</a><a href="#">Funding</a><a href="#">Tour</a><a href="#">Ink</a><a href="#">Pricing</a></div><span class="sp"></span><div class="search">⌕ Search teams</div><a href="#" style="font-weight:600">Log in</a><button class="btn">Apply</button></nav>
 
 <section class="hero">
 <div class="eyebrow">Live rankings</div><h1>Hyperorbs Leaderboard</h1>
@@ -46,6 +46,8 @@ tr.row:hover td{background:#0b0f16}.rank{color:var(--mut);width:46px}.star{color
 <div class="boxes">
 <div class="box black"><div class="lbl">Total Turnover</div><div id="turn" class="big"></div><div class="chg" id="turnchg"></div></div>
 <div class="box"><div class="lbl">Hot by Trading Volume</div><div class="hot" id="hot"></div></div>
+<div class="box"><div class="lbl">Top Startups</div><div class="hot" id="topS"></div></div>
+<div class="box"><div class="lbl">Top Creators</div><div class="hot" id="topC"></div></div>
 </div></section>
 
 <div class="tabs" id="tabs"></div>
@@ -65,12 +67,15 @@ let view="Top",cat="Startups",loading=true;
 const fmt=n=>{const a=Math.abs(n);for(const [v,s] of [[1e12,"T"],[1e9,"B"],[1e6,"M"],[1e3,"K"]])if(a>=v){const x=n/v;return (x>=100?x.toFixed(0):x.toFixed(1).replace(/\.0$/,""))+s}return String(n)};
 const cur="₹";
 function spark(seed,color){let y=20,pts=[];for(let i=0;i<12;i++){y+=Math.sin(seed*7+i*1.7)*6-1.3;y=Math.max(4,Math.min(34,y));pts.push(`${i*10},${(38-y).toFixed(1)}`)}return `<svg width="120" height="38" viewBox="0 0 110 38"><polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/></svg>`}
+const skRow=i=>`<div class="hrow"><span class="sk c av"></span><span class="sk" style="width:${90-i*6}px;height:14px"></span><span class="sk hv" style="width:48px;height:14px"></span></div>`;
 function render(){
  // hero
  document.getElementById("turn").innerHTML=loading?'<span class="sk" style="width:260px;height:56px"></span>':cur+fmt(TOTAL);
  document.getElementById("turn").title=loading?"":cur+TOTAL.toLocaleString("en-IN");
  document.getElementById("turnchg").innerHTML=loading?'<span class="sk" style="width:130px;height:16px"></span>':"▲ 12.4% vs last 30 days";
- document.getElementById("hot").innerHTML=vol.map((v,i)=>loading?`<div class="hrow"><span class="sk c av"></span><span class="sk" style="width:${140-i*10}px;height:14px"></span><span class="sk hv" style="width:70px;height:14px"></span></div>`:`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${v[0]}</b><span class="hv">${cur}${fmt(v[1])} <small style="color:var(--green)">${v[2]}</small></span></div>`).join("");
+ document.getElementById("hot").innerHTML=vol.slice(0,4).map((v,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${v[0]}</b><span class="hv">${cur}${fmt(v[1])}<small class="s" style="color:var(--green)">${v[2]}</small></span></div>`).join("");
+ document.getElementById("topS").innerHTML=startups.slice(0,4).map((d,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${d[0]}</b><span class="hv">${cur}${fmt(d[2])}<small class="s">${d[3]} tasks</small></span></div>`).join("");
+ document.getElementById("topC").innerHTML=creators.slice(0,4).map((d,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[(i+4)%10]}"></span><b>${d[0]}</b><span class="hv">${d[2]} deals<small class="s">${d[3]} tasks</small></span></div>`).join("");
  document.getElementById("tabs").innerHTML=views.map(v=>`<div class="tab ${v==view?"on":""}" data-v="${v}">${v}</div>`).join("");
  document.getElementById("chips").innerHTML=cats.map(c=>`<button class="chip ${c==cat?"on":""}" data-c="${c}">${c}</button>`).join("");
  const isC=cat=="Creators";const data=isC?creators:startups;
