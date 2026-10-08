@@ -9,16 +9,16 @@ nav{display:flex;align-items:center;gap:22px;height:64px;border-bottom:1px solid
 .logo{font-weight:800;letter-spacing:.14em;font-size:22px}.nav{display:flex;gap:22px}.nav a{color:#d6deea;font-weight:600}.nav a.on{color:var(--blue)}
 .sp{flex:1}.search{display:flex;align-items:center;gap:8px;background:#11161f;border-radius:10px;padding:9px 14px;width:300px;color:var(--mut)}
 .btn{background:var(--blue);color:#06101f;border:0;border-radius:10px;padding:9px 18px;font-weight:700;cursor:pointer}
-.hero{padding:34px 0 10px}.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase}
+.hero{padding:30px 0 10px}.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase}
 h1{font-size:38px;margin:6px 0 6px;letter-spacing:-.02em}.sub{color:var(--mut);margin:0 0 22px}
 .boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.box{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);min-height:250px}
+.box{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--panel);min-height:128px;padding:16px 18px}
 .box.black{background:#000;border-color:#222c3a;box-shadow:0 0 0 1px #000,0 20px 60px -30px rgba(79,141,255,.5);position:relative;overflow:hidden}
 .box.black:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(79,141,255,.25),transparent)}
 .lbl{color:var(--mut);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-.big{font-size:46px;font-weight:800;letter-spacing:-.03em;margin:14px 0 4px}.chg{color:var(--green);font-weight:600}
+.big{font-size:38px;font-weight:800;letter-spacing:-.03em;margin:8px 0 2px}.chg{color:var(--green);font-weight:600}
 .hot{display:flex;flex-direction:column;gap:2px;margin-top:10px}.hrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.hrow:last-child{border:0}
-.av{width:30px;height:30px;border-radius:50%;flex:none}.hv{margin-left:auto;font-weight:700;text-align:right}.hrow b{font-size:14px}.hrow small.s{white-space:nowrap;color:var(--mut);display:block;font-weight:500;font-size:11.5px}.hr{color:var(--mut);width:18px}
+.cv{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:8px 0 2px}.cs{display:flex;align-items:center;gap:8px;font-weight:600;color:#cfd8e5}.cs small{color:var(--mut);font-weight:500}.av{width:30px;height:30px;border-radius:50%;flex:none}.hv{margin-left:auto;font-weight:700;text-align:right}.hrow b{font-size:14px}.hrow small.s{white-space:nowrap;color:var(--mut);display:block;font-weight:500;font-size:11.5px}.hr{color:var(--mut);width:18px}
 .tabs{display:flex;gap:28px;margin-top:30px;border-bottom:1px solid var(--line)}.tab{padding:12px 0;color:var(--mut);font-size:19px;cursor:pointer;position:relative}.tab.on{color:#fff;font-weight:700}.tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue)}
 .bar{display:flex;align-items:center;gap:8px;padding:16px 0}.chip{padding:9px 14px;border-radius:10px;color:#c5cfdd;font-weight:600;cursor:pointer;background:transparent;border:0;font-size:15px}.chip.on{background:#0f2a52;color:var(--blue)}
 .tools{margin-left:auto;display:flex;gap:10px}.tbtn{background:#11161f;border:1px solid var(--line);color:#dbe3ee;padding:9px 14px;border-radius:10px;font-weight:600;cursor:pointer}
@@ -45,9 +45,9 @@ tr.row:hover td{background:#0b0f16}.rank{color:var(--mut);width:46px}.star{color
 <p class="sub">See who's winning on Hyperorbs: top startups and creators, ranked live.</p>
 <div class="boxes">
 <div class="box black"><div class="lbl">Total Turnover</div><div id="turn" class="big"></div><div class="chg" id="turnchg"></div></div>
-<div class="box"><div class="lbl">Hot by Trading Volume</div><div class="hot" id="hot"></div></div>
-<div class="box"><div class="lbl">Top Startups</div><div class="hot" id="topS"></div></div>
-<div class="box"><div class="lbl">Top Creators</div><div class="hot" id="topC"></div></div>
+<div class="box"><div class="lbl">Hot by Trading Volume</div><div id="hot"></div></div>
+<div class="box"><div class="lbl">Top Startup</div><div id="topS"></div></div>
+<div class="box"><div class="lbl">Top Creator</div><div id="topC"></div></div>
 </div></section>
 
 <div class="tabs" id="tabs"></div>
@@ -73,9 +73,10 @@ function render(){
  document.getElementById("turn").innerHTML=loading?'<span class="sk" style="width:260px;height:56px"></span>':cur+fmt(TOTAL);
  document.getElementById("turn").title=loading?"":cur+TOTAL.toLocaleString("en-IN");
  document.getElementById("turnchg").innerHTML=loading?'<span class="sk" style="width:130px;height:16px"></span>':"▲ 12.4% vs last 30 days";
- document.getElementById("hot").innerHTML=vol.slice(0,4).map((v,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${v[0]}</b><span class="hv">${cur}${fmt(v[1])}<small class="s" style="color:var(--green)">${v[2]}</small></span></div>`).join("");
- document.getElementById("topS").innerHTML=startups.slice(0,4).map((d,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[i]}"></span><b>${d[0]}</b><span class="hv">${cur}${fmt(d[2])}<small class="s">${d[3]} tasks</small></span></div>`).join("");
- document.getElementById("topC").innerHTML=creators.slice(0,4).map((d,i)=>loading?skRow(i):`<div class="hrow"><span class="hr">${i+1}</span><span class="av" style="background:${pal[(i+4)%10]}"></span><b>${d[0]}</b><span class="hv">${d[2]} deals<small class="s">${d[3]} tasks</small></span></div>`).join("");
+ const cb=(av,big,sub,subc)=>loading?`<div class="sk" style="width:150px;height:30px;margin:10px 0 8px"></div><div class="sk" style="width:110px;height:13px"></div>`:`<div class="cv">${big}</div><div class="cs"><span class="av" style="background:${av};width:20px;height:20px"></span>${sub}</div>`;
+ document.getElementById("hot").innerHTML=cb(pal[0],cur+fmt(vol[0][1])+' <small style="color:var(--green);font-size:14px">'+vol[0][2]+'</small>',vol[0][0]);
+ document.getElementById("topS").innerHTML=cb(pal[0],cur+fmt(startups[0][2]),startups[0][0]+' <small>· '+startups[0][3]+' tasks</small>');
+ document.getElementById("topC").innerHTML=cb(pal[4],creators[0][2]+' deals',creators[0][0]+' <small>· '+creators[0][3]+' tasks</small>');
  document.getElementById("tabs").innerHTML=views.map(v=>`<div class="tab ${v==view?"on":""}" data-v="${v}">${v}</div>`).join("");
  document.getElementById("chips").innerHTML=cats.map(c=>`<button class="chip ${c==cat?"on":""}" data-c="${c}">${c}</button>`).join("");
  const isC=cat=="Creators";const data=isC?creators:startups;
